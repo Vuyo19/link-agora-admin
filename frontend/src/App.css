@@ -1,0 +1,15 @@
+/* App.css */
+
+/* Make NavSidebar sticky */
+.nav-sidebar {
+  position: sticky;
+  top: 0;
+  /* Add more styling properties here if needed */
+}
+
+/* Make NavBar sticky */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  /* Add more styling properties here if needed */
+}
