@@ -1,0 +1,9 @@
+.text-xxs {
+    font-size: 0.65rem/* 12px */;
+    line-height: 1rem/* 16px */;
+  }
+
+  .text-xs {
+    font-size: 0.75rem/* 12px */;
+    line-height: 1rem/* 16px */;
+}

@@ -1,0 +1,28 @@
+/* navsidebar.css */
+
+/* Sticky sidebar */
+.sticky-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 80px; /* Initial width when closed */
+    background-color: #0e0e0e;
+    color: white;
+    transition: width 0.5s;
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    z-index: 50;
+  }
+  
+  /* Expand the sidebar */
+  .sticky-sidebar.open {
+    width: 240px; /* Width when open */
+  }
+  
+  /* Add more styles as needed */
+  /* Hide the HiMenuAlt3 icon when screen width is smaller than 800px */
+@media (max-width: 800px) {
+  .hide-icon {
+    display: none;
+  }
+}
+  

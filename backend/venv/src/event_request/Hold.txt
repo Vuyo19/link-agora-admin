@@ -1,0 +1,23 @@
+>>> from event_request.models import Status
+>>> new_status = Status(name="Under Review", description="This status indicates that the event is currently under review.", color="#FFD700")
+>>> new_status.save()
+>>> new_status = Status(name="Approve", description="This status indicates that the event has been approved.", color="#EBFAE4")
+>>> new_status.save()
+>>> new_status = Status(name="Decline", description="This status indicates that the event has been declined.", color="#FAA9A9")
+>>> new_status.save() 
+
+# For the progress 
+
+
+# For event_request 
+
+1 - new_event = Event(event_id_comm='SA_NET2023', title='South African Networking Event', date=date(2023, 9, 15), time=time(18, 0), description='Join us for a networking event to connect with professionals in South Africa.', venue='Cape Town Convention Center', capacity=200, organizer=CustomUser.objects.get(username='tmoloi'), address1='123 Main Street', city='Cape Town', province='Western Cape', postal_code='8000', eventtrack_id=EventTrack.objects.get(id=1), status_id=Status.objects.get(id=4))
+
+2 - new_event = Event(event_id_comm='BE_CPT2023', title='Black Empowerment Summit', date=date(2023, 11, 15), time=time(9, 30), description='Join us for a summit focused on advancing black empowerment initiatives in Cape Town.', venue='Cape Town International Convention Centre', capacity=300, organizer=CustomUser.objects.get(username='sndlovu19'), address1='789 Empowerment Avenue', city='Cape Town', province='Western Cape', postal_code='8001', eventtrack_id=EventTrack.objects.get(id=1), status_id=Status.objects.get(id=4))
+
+3 - new_event = Event(event_id_comm='YBE_JHB2023', title='Young Black Entrepreneurs Conference', date=date(2023, 12, 5), time=time(10, 0), description='Join us for a conference aimed at empowering and supporting young black entrepreneurs in Johannesburg.', venue='Sandton Convention Centre', capacity=250, organizer=CustomUser.objects.get(username='lmkhabela20'),  address1='123 Entrepreneur Avenue', city='Johannesburg', province='Gauteng', postal_code='2196', eventtrack_id=EventTrack.objects.get(id=1), status_id=Status.objects.get(id=4))
+
+4 - new_event = new_event = Event(event_id_comm='FE_DURB2023', title='Women Empowerment Symposium', date=date(2024, 11, 1), time=time(13, 0), description='Join us for a symposium focused on empowering women and fostering gender equality in Durban.', venue='Durban International Convention Centre', capacity=150, organizer=CustomUser.objects.get(username='lmkhabela20'), address1='456 Empowerment Road', city='Durban', province='KwaZulu-Natal', postal_code='4001', eventtrack_id=EventTrack.objects.get(id=1), status_id=Status.objects.get(id=4)) 
+
+# Create an event instance
+new_event = Event(event_id_comm='BBBEE_PTAR2023', title='BBBEE Policies Symposium', date=date(2023, 9, 25), time=time(9, 0), description='Join us for a symposium focused on shaping BBBEE policies in corporations in Pretoria.', venue='Pretoria Convention Centre', capacity=200,organizer=CustomUser.objects.get(username='sndlovu19'), address1='789 Empowerment Avenue', city='Pretoria', province='Gauteng', postal_code='0001', eventtrack_id=EventTrack.objects.get(id=1), status_id=Status.objects.get(id=4))
