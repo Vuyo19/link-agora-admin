@@ -99,6 +99,28 @@ def managed_events_filter(request):
     else: 
         return JsonResponse({'message': 'failed'}, status=400) 
 
+# Returning the managed events stat.  
+@csrf_exempt
+def managed_events_stat(request): 
+
+    if request.method == "POST": 
+
+        # Returning the managed events stat. 
+        # Query to count organizers who added an event but exclude events with excluded_status_id
+        organiser_count = CustomUser.objects.filter(
+            organized_events__isnull=False  # Filter organizers who added an event
+        ).annotate(
+            event_count=Count('organized_events')  # Count the number of events for each organizer
+        ).filter(
+            event_count__gt=0  # Exclude organizers with no events
+        ).count()
+
+        under_review_count = Event.objects.filter(status_id__name="Under Review").count()
+        declined_count = Event.objects.filter(status_id__name="Declined").count() 
+        approved_count = Event.objects.filter(status_id__name="Approved").count() 
+
+        return JsonResponse({"events_organisers_count": organiser_count , "events_under_review_num": under_review_count , "events_declined_num": declined_count , "events_approved_num": approved_count}) 
+    
 
 
 
