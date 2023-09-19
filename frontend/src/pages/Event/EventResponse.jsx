@@ -1,3 +1,5 @@
+
+// Function to determine if the admin approved the event, declined the event or placed the event Under Review.
 async function responseData(response, id) {  
 
     const url = 'http://127.0.0.1:8000/requests/api/event-request-response/'; // Url to request the event requests. 

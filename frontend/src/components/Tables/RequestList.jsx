@@ -10,6 +10,7 @@ const RequestList = ({
   eventStatus,
   statusColor,
   progressBarWidth,
+  keyid 
 }) => {
   return (
     <tr>
@@ -45,8 +46,9 @@ const RequestList = ({
       </td>
       {/* Open Event Details Button */}
       <td className="relative py-3.5 px-4">
-        {/* Wrap the button with a Link component */}
-        <Link to={`/eventDetails`} className="block">
+        {/* Wrap the button with a Link component */} 
+        {/* Adding the event details id*/}
+        <Link to={`/eventDetails/${keyid}`} className="block">
           <button className="px-1 py-1 text-white transition-colors duration-200 rounded-md bg-[#8A2623] hover:bg-[#01663E]">
             {/* arrow icon */}
             <FaArrowRight className="w-3 h-3" />

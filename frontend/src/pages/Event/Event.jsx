@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CalendarDays } from "lucide-react";
 import { CircleDashed } from "lucide-react";
 import { MapPin } from "lucide-react";
@@ -10,7 +10,9 @@ import { Info } from "lucide-react";
 import { Image } from "lucide-react";
 import { CalendarCheck } from "lucide-react";
 import filler from "../../assets/eventfillerimage.jpeg";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
+
+import responseData from "./EventResponse";
 
 const Event = () => {  
 
@@ -65,7 +67,7 @@ const Event = () => {
 
   };
 
-  // Returning the page         
+  // Returning the page.         
   return (
     <div>
       <div className="relative py-16 bg-gradient-to-br from-sky-50 to-gray-200">
@@ -139,14 +141,14 @@ const Event = () => {
                     <UserSquare size={20} color="gray" />
                     <p className="ml-2  font-bold">Creator</p>
                     <span className="ml-2 text-black text-sm font-bold px-8 py-1 rounded-full">
-                      Jasmine Ming
+                      {events_table.organizer_name} {/* Organizer name */}
                     </span>
                   </div>
                   <div className="flex items-center justify-left mb-6">
                     <CircleDashed size={20} color="gray" />
                     <p className="ml-2 mr-8 font-bold">Status</p>
                     <span className="ml-2 bg-[#FFF0D1] text-black text-xs font-bold px-8 py-1 rounded-full">
-                      Still Pending
+                      {events_table.eventtrack_label} {/* Event label */}
                     </span>
                   </div>
 
@@ -154,7 +156,7 @@ const Event = () => {
                     <CalendarDays size={20} color="gray" />
                     <p className="ml-2  font-bold">Timeline</p>
                     <span className="ml-2 text-black text-sm font-bold px-8 py-1 rounded-full">
-                      03 August, 2023 - 13:30 pm
+                      {events_table.date_format} {/* Event Date format */}
                     </span>
                   </div>
 
@@ -162,8 +164,8 @@ const Event = () => {
                     <MapPin size={20} color="gray" />
                     <p className="ml-2  font-bold">Venue</p>
                     <span className="ml-2 text-black text-sm font-bold px-8 py-1 rounded-full">
-                      Somewhere nice
-                    </span>
+                      {events_table.venue} {/* Event Venue*/}
+                    </span> 
                   </div>
 
                   <div className="flex items-center justify-left mb-6">
@@ -187,19 +189,25 @@ const Event = () => {
                     Please choose an option below:
                   </p>
 
-                  {/* Buttons */}
+                  {/* Buttons for responding to event requests */}
                   <div className="flex flex-col justify-center space-y-4">
-                    <button className="px-6 py-2 text-[#03663F] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#03663F] hover:text-white">
+                  <button className="px-6 py-2 text-[#03663F] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#03663F] hover:text-white"
+                            value="approve"
+                            onClick={eventResponseClick}>
                       Approve Event
                     </button>
-                    <button className="px-6 py-2 text-[#8A2623] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#8A2623] hover:text-white">
+                    <button className="px-6 py-2 text-[#8A2623] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#8A2623] hover:text-white"
+                            value="decline"
+                            onClick={eventResponseClick}>
                       Decline Event
                     </button>
-                    <button className="px-6 py-2 text-white font-bold bg-black rounded-full hover:bg-green-800">
+                    <button className="px-6 py-2 text-white font-bold bg-black rounded-full hover:bg-green-800"
+                            value="review"
+                            onClick={eventResponseClick}>
                       Place on Review
                     </button>
                   </div>
-                  <br></br>
+                  <br> </br>
                 </div>
               </div>
             </div>
