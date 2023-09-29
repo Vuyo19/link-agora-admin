@@ -1,160 +1,70 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import EventList from "./EventList";
 import Stating from "../Stats/Stating";
-import manageStatResponse from "./Response/EventManageStatResponse";
-
 // Importing React-Icons
-
-
 import { BsCalendar2Event } from "react-icons/bs";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { MdPendingActions } from "react-icons/md";
 import { LiaBalanceScaleSolid } from "react-icons/lia";
-import { FiSearch } from "react-icons/fi"; 
+import { FiSearch } from "react-icons/fi";
 
 
 
-function ManageTable() { 
-
-  const [events_table, setEventsTable] = useState([]);
-  const [activeButton, setActiveButton] = useState('viewAll'); // Initialize with the default button label 
-  const [manage_stat, setManageStat] = useState([]); // Storing the managed events stat.
-
-
-  const handleButtonClick = async (buttonId) => {
-    setActiveButton(buttonId); 
-    
-    // Reassigning the events into the EventsTable. 
-    try {
-      const eventsData = await filterManageResponse(buttonId); // Wait for the response
-      setEventsTable(eventsData); // Update the events_table state
-    } catch (error) { 
-        // Handle the error if needed
-      console.error('Error:', error);
-    } // Calling the class to make the request and then storing the results inside the EventsTable. 
-
-  }; 
-
-
-  useEffect(() => {
-    // Code to run when the component mounts
-    
-    const url = 'http://127.0.0.1:8000/manage/api/managed-events/'; // Url to request the managed requests. 
-    const requestData = {
-      // Your data to be sent in the request body
-      key1: 'Testing',
-    };
-  
-    async function fetchData() {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestData),
-        });
-  
-        if (response.ok) {
-          const responseData = await response.json(); 
-          setEventsTable(responseData.events); // Update events_table state. 
-
-          const manage_stat_pull = await manageStatResponse()
-          setManageStat(manage_stat_pull); // Updating the manage_stat state. 
-
-        } else {
-          alert('Request failed')
-          // console.error('Request failed:', response.status, response.statusText);
-        }
-      } catch (error) {
-        console.error('Request error:', error);
-      }
-    }
-  
-    fetchData();
-  }, []);
-
-
+function ManageTable() {
   return (
     <>
       <section className="container px-4 mx-auto">
-      <div className="sm:flex sm:items-center sm:justify-between">
-        {/* Stat Cards */}
-        <div>
-      <h1 className="text-5xl font-semibold text-gray-800 mt-8 mb-10">Approved Events</h1>
-        <div className="flex flex-col mt-4 gap-2 sm:flex-row sm:flex-wrap md:flex-row md:flex-wrap">
-          {/* Stats cards components */}
-          <Stating
-            icon={<MdOutlinePeopleAlt size={48} color="#5AC369" />}
-            title="Event Organisers"
-            value={manage_stat.events_organisers_count}
-          />
+<div className="sm:flex sm:items-center sm:justify-between">
+  {/* Stat Cards */}
+  <div>
+  <h1 className="text-5xl font-semibold text-gray-800 mt-8 mb-10">Approved Events</h1>
+    <div className="flex flex-col mt-4 gap-2 sm:flex-row sm:flex-wrap md:flex-row md:flex-wrap">
+      {/* Stats cards components */}
+      <Stating
+        icon={<MdOutlinePeopleAlt size={48} color="#5AC369" />}
+        title="Event Organisers"
+        value="10"
+      />
 
-          <Stating
-            icon={<MdPendingActions size={48} color="#5AC369" />}
-            title="Under Review"
-            value={manage_stat.events_under_review_num}
-          />
+      <Stating
+        icon={<MdPendingActions size={48} color="#5AC369" />}
+        title="Pending Events"
+        value="5"
+      />
 
-          <Stating
-            icon={<LiaBalanceScaleSolid size={48} color="#5AC369" />}
-            title="Declined"
-            value={manage_stat.events_declined_num}
-          />
+      <Stating
+        icon={<LiaBalanceScaleSolid size={48} color="#5AC369" />}
+        title="Total Appeals"
+        value="2"
+      />
 
-          <Stating
-            icon={<BsCalendar2Event size={40} color="#5AC369" />}
-            title="Approved"
-            value={manage_stat.events_approved_num}
-          />
-        </div>
-        <div className="flex items-center gap-x-3 mb-6">
-          <h2 className="text-3xl font-medium text-black">Events</h2>
-        </div>
-      </div>
+      <Stating
+        icon={<BsCalendar2Event size={40} color="#5AC369" />}
+        title="Total Events"
+        value="12"
+      />
     </div>
+    <div className="flex items-center gap-x-3 mb-6">
+      <h2 className="text-3xl font-medium text-black">Events</h2>
+    </div>
+  </div>
+</div>
 
 
         <div className="-mt-2 md:flex md:items-center md:justify-between">
           {/* ... Search and filter buttons ... */}
           <div class="inline-flex overflow-hidden bg-white border divide-x rounded-lg mb-2 rtl:flex-row-reverse">
-            <button 
-              class={`px-5 py-2 text-xs font-medium ${
-                activeButton === 'viewAll' 
-                ? 'text-gray-200 transition-colors duration-200 bg-[#01663E] sm:text-sm' 
-                : 'text-gray-600 transition-colors duration-200 sm:text-sm' }`} 
-                onClick={() => handleButtonClick('viewAll')}
-                >
+            <button class="px-5 py-2 text-xs font-medium text-gray-200 transition-colors duration-200 bg-[#01663E] sm:text-sm">
               View all
-            </button>  
-
-            <button 
-              class={`px-5 py-2 text-xs font-medium ${
-                activeButton === 'underReview' 
-                ? 'text-gray-200 transition-colors duration-200 bg-[#01663E] sm:text-sm' 
-                : 'text-gray-600 transition-colors duration-200 sm:text-sm' }`} 
-                onClick={() => handleButtonClick('underReview')}>
-              Under Review
             </button>
 
-            <button 
-              class={`px-5 py-2 text-xs font-medium ${
-                activeButton === 'declined' 
-                ? 'text-gray-200 transition-colors duration-200 bg-[#01663E] sm:text-sm' 
-                : 'text-gray-600 transition-colors duration-200 sm:text-sm' }`} 
-                onClick={() => handleButtonClick('declined')}>
-              Declined
+            <button class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm">
+              Completed
             </button>
 
-            <button 
-              class={`px-5 py-2 text-xs font-medium ${
-                activeButton === 'approved' 
-                ? 'text-gray-200 transition-colors duration-200 bg-[#01663E] sm:text-sm' 
-                : 'text-gray-600 transition-colors duration-200 sm:text-sm' }`} 
-                onClick={() => handleButtonClick('approved')}>
-              Approved
+            <button class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm ">
+              Not Completed
             </button>
-
           </div>
 
           <div class="relative flex items-center mt-6 md:mt-0">
@@ -245,26 +155,88 @@ function ManageTable() {
                         <span class="sr-only">Edit</span>
                       </th>
                     </tr>
-                  </thead> 
+                  </thead>
+                  {/* Row 1 */}
+                  <tbody className="bg-white divide-y divide-gray-20">
+                    <EventList
+                      eventId="6783"
+                      organiser="Jasmine Ming"
+                      eventStatus="Confirmed"
+                      statusColor="#C2F6CA"
+                      eventDate="03-08-2023"
+                      eventVenue="Think Tank 1"
+                      progressBarWidth="w-2/3 h-1.5"
+                    />
+                    {/* Other rows */}
+                  </tbody>
 
-                  {/* Generating the rows. */} 
-                  {/* Loading the managed requests. */}
-        
-                  {events_table.map((event, index) => ( 
-                    <tbody className="bg-white divide-y divide-gray-20"> 
-                      <EventList
-                        eventId={event.event_id_comm}
-                        organiser={event.organizer_name}
-                        eventStatus={event.status_label}
-                        statusColor={event.eventtrack_color}
-                        eventDate={event.date}
-                        eventVenue={event.venue}
-                        progressBarWidth={event.approval_progress}
-                        keyid={event.event_id}
-                      />
-                    </tbody>  
-                  ))} 
-                 
+                  {/* Row 2 */}
+                  <tbody className="bg-white divide-y divide-gray-20">
+                    <EventList
+                      eventId="6783"
+                      organiser="Jasmine Ming"
+                      eventStatus="Confirmed"
+                      statusColor="#C2F6CA"
+                      eventDate="20-08-2023"
+                      eventVenue="Think Tank 2"
+                      progressBarWidth="w-2/3 h-1.5"
+                    />
+                    {/* Other rows */}
+                  </tbody>
+
+                  {/* Row 3 */}
+                  <tbody className="bg-white divide-y divide-gray-20">
+                    <EventList
+                      eventId="6783"
+                      organiser="Jasmine Ming"
+                      eventStatus="Confirmed"
+                      statusColor="#C2F6CA"
+                      eventDate="10-08-2023"
+                      eventVenue="Think Tank 3"
+                      progressBarWidth="w-2/3 h-1.5"
+                    />
+                    {/* Other rows */}
+                  </tbody>
+
+                  {/* Row 4 */}
+                  <tbody className="bg-white divide-y divide-gray-20">
+                    <EventList
+                      eventId="6783"
+                      organiser="Jasmine Ming"
+                      eventStatus="Confirmed"
+                      statusColor="#C2F6CA"
+                      eventDate="15-08-2023"
+                      eventVenue="Think Tank 4"
+                      progressBarWidth="w-2/3 h-1.5"
+                    />
+                    {/* Other rows */}
+                  </tbody>
+
+                  {/* Row 5 */}
+                  <tbody className="bg-white divide-y divide-gray-20">
+                    <EventList
+                      eventId="6783"
+                      organiser="Jasmine Ming"
+                      eventStatus="Confirmed"
+                      statusColor="#C2F6CA"
+                      eventDate="17-08-2023"
+                      eventVenue="Think Tank 5"
+                      progressBarWidth="w-2/3 h-1.5"
+                    />
+                  </tbody>
+
+                  {/* Row 6 */}
+                  <tbody className="bg-white divide-y divide-gray-20">
+                    <EventList
+                      eventId="6783"
+                      organiser="Jasmine Ming"
+                      eventStatus="Confirmed"
+                      statusColor="#C2F6CA"
+                      eventDate="23-08-2023"
+                      eventVenue="Think Tank 6"
+                      progressBarWidth="w-2/3 h-1.5"
+                    />
+                  </tbody>
                 </table>
               </div>
             </div>

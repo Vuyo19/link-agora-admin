@@ -14,15 +14,12 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logooption1.png";
 
 import "../Sidebar/NavSidebar"; // Import your CSS file
-import { Disclosure } from "@headlessui/react";
-
 
 const NavSidebar = () => {
   const windowSize = useWindowSize();
 
   const menus = [
-    { name: "Dashboard", link: "/dashboard", icon: LayoutDashboard },
-    { name: "Schedule", link: "/schedule", icon: CalendarDays },
+    { name: "Dashboard", link: "/", icon: LayoutDashboard },
     { name: "Requests", link: "/requests", icon: CalendarClock },
     { name: "Manage", link: "/manage", icon: ListTodo, margin: true },
     { name: "Setting", link: "/settings", icon: Settings },
@@ -45,18 +42,18 @@ const NavSidebar = () => {
       } duration-500 text-gray-100 px-4`}
       style={{ position: "sticky", top: 0, zIndex: 50 }}
     >
-<div className="py-3 flex justify-between items-center">
-  <div className={`transition-all ${open ? "w-20 h-20" : "w-0"}`}>
-    <img src={logo} className="h-full" alt="Logo" />
-  </div>
-  {windowSize.width && windowSize.width >= 1200 && (
-    <HiMenuAlt3
-      size={26}
-      className="cursor-pointer"
-      onClick={() => setOpen(!open)}
-    />
-  )}
-</div>
+      <div className="py-3 flex justify-between items-center">
+        <div className={`transition-all ${open ? "w-20 h-20" : "w-0"}`}>
+          <img src={logo} className="h-full" alt="Logo" />
+        </div>
+        {windowSize.width && windowSize.width >= 1200 && (
+          <HiMenuAlt3
+            size={26}
+            className="cursor-pointer"
+            onClick={() => setOpen(!open)}
+          />
+        )}
+      </div>
 
       {/* White line separator above the menu items */}
       <div

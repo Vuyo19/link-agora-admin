@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 
 // Importing Pages
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Schedule from "./pages/Schedule";
 import Requests from "./pages/Requests";
 import Manage from "./pages/Manage";
 import SettingsPage from "./pages/SettingsPage";
@@ -33,8 +32,7 @@ const App = () => {
         <NavBar/>
         <div className="flex-grow">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/schedule" element={<Schedule />} />
+          <Route path="/" element={<Dashboard />} />
             <Route path="/requests" element={<Requests />} />
             <Route path="/manage" element={<Manage />} />
             <Route path="/settings" element={<SettingsPage />} />
