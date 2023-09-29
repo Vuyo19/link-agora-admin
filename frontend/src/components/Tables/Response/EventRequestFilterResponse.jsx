@@ -1,12 +1,11 @@
-// Filtering the event request based on the event track. 
 async function filterManageResponse(value) {
 
-    const url = 'http://127.0.0.1:8000/manage/api/managed-events-filter/'; // Url to request the event requests. 
+    const url = 'http://127.0.0.1:8000/requests/api/event-request-filter/'; // Url to request the event requests. 
     const requestData = {
       // Your data to be sent in the request body
       // Sending the specific event id to the server to get the specific event.  
       // Sending the value of the filter request.
-      event_manage_filter: value
+      event_response_filter: value
     };
 
     try {
@@ -34,6 +33,8 @@ async function filterManageResponse(value) {
         return null; // Return null or an appropriate value in case of an error
 
       }
-}
+} 
 
-export default filterManageResponse; 
+
+
+export default filterManageResponse;

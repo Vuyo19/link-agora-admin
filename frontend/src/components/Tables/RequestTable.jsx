@@ -21,29 +21,32 @@ function RequestTable() {
   // Detecting which button was clicked and then changing the colour
   const [activeButton, setActiveButton] = useState('viewAll'); // Initially, 'viewAll' is active. 
 
-  // Function to handle button clicks
-  const handleButtonClick = async (buttonId) => {
-    setActiveButton(buttonId); 
+  // Function to handle button clicks 
 
+  const filterEventRequestButton = async (value) => {
+
+    setActiveButton(value)
     // Reassigning the events into the EventsTable. 
     try {
-      const eventsData = await filterRequestResponse(buttonId); // Wait for the response
+      const eventsData = await filterRequestResponse(value); // Wait for the response
       setEventsTable(eventsData); // Update the events_table state
     } catch (error) { 
         // Handle the error if needed
       console.error('Error:', error);
-    } // Calling the class to make the request and then storing the results inside the EventsTable. 
-  };
+    } // Calling the class to make the request and then storing the results inside the EventsTable.  
 
+  }; 
+
+ 
   useEffect(() => {
     // Code to run when the component mounts
     // alert('Loading event requests...');
     
-    // Perform your action here  
+    // Loading the send event requests.
     const url = 'http://127.0.0.1:8000/requests/api/send-event-requests/'; // Url to request the event requests. 
     const requestData = {
-      // Your data to be sent in the request body
-      key1: 'Testing',
+      // Your data to be sent in the request body.
+
     };
   
     async function fetchData() {
@@ -126,54 +129,32 @@ function RequestTable() {
                     ? 'text-gray-200 bg-[#8A2623]'
                     : 'text-gray-600'
                 } transition-colors duration-200 sm:text-sm`}
-                onClick={() => handleButtonClick('viewAll')}
+                onClick={() => filterEventRequestButton('viewAll')}
               >
                 View all
             </button> 
 
             <button
                 className={`px-5 py-2 text-xs font-medium ${
-                  activeButton === 'stillPending'
+                  activeButton === 'inQueue'
                     ? 'text-gray-200 bg-[#8A2623]'
                     : 'text-gray-600'
                 } transition-colors duration-200 sm:text-sm`}
-                onClick={() => handleButtonClick('stillPending')}
+                onClick={() => filterEventRequestButton('inQueue')}
               >
-                Still Pending
+                In Queue
             </button> 
 
             <button
                 className={`px-5 py-2 text-xs font-medium ${
-                  activeButton === 'inProgress'
+                  activeButton === 'underReview'
                     ? 'text-gray-200 bg-[#8A2623]'
                     : 'text-gray-600'
                 } transition-colors duration-200 sm:text-sm`}
-                onClick={() => handleButtonClick('inProgress')}
+                onClick={() => filterEventRequestButton('underReview')}
               >
-                In Progress
-            </button>  
-
-            <button
-                className={`px-5 py-2 text-xs font-medium ${
-                  activeButton === 'halfway'
-                    ? 'text-gray-200 bg-[#8A2623]'
-                    : 'text-gray-600'
-                } transition-colors duration-200 sm:text-sm`}
-                onClick={() => handleButtonClick('halfway')}
-              >
-                Halfway
-            </button>   
-
-            <button
-                className={`px-5 py-2 text-xs font-medium ${
-                  activeButton === 'almostComplete'
-                    ? 'text-gray-200 bg-[#8A2623]'
-                    : 'text-gray-600'
-                } transition-colors duration-200 sm:text-sm`}
-                onClick={() => handleButtonClick('almostComplete')}
-              >
-                Almost Complete
-            </button>  
+                Under Review
+            </button>     
 
             <button
                 className={`px-5 py-2 text-xs font-medium ${
@@ -181,7 +162,7 @@ function RequestTable() {
                     ? 'text-gray-200 bg-[#8A2623]'
                     : 'text-gray-600'
                 } transition-colors duration-200 sm:text-sm`}
-                onClick={() => handleButtonClick('complete')}
+                onClick={() => filterEventRequestButton('complete')}
               >
                 Complete
             </button> 

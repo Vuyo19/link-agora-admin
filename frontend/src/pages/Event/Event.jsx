@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { CalendarDays } from "lucide-react";
 import { CircleDashed } from "lucide-react";
 import { MapPin } from "lucide-react";
@@ -10,16 +10,17 @@ import { Info } from "lucide-react";
 import { Image } from "lucide-react";
 import { CalendarCheck } from "lucide-react";
 import filler from "../../assets/eventfillerimage.jpeg";
-import { Link } from "react-router-dom"; 
+import { Link, useParams } from "react-router-dom"; 
 
-import responseData from "./EventResponse";
+// import responseData from "./EventResponse";
 
 const Event = () => {  
 
   // Getting the id parameter
   const { id } = useParams();
-  const [events_table, setEventsTable] = useState([]);
+  // const [events_table, setEventsTable] = useState([]);
 
+  /*
   useEffect(() => {
     // Code to run when the component mounts
     // alert('Loading event requests...');      
@@ -58,14 +59,14 @@ const Event = () => {
   }, []);  
 
   // Responding to the click of the button. 
-  const eventResponseClick = (event) => {
+  const eventResponseClick = async (event) => {
     const responseValue = event.target.value;
     alert(responseValue); 
 
     // Sending the response to the backend. 
     responseData(responseValue, id); 
 
-  };
+  }; */
 
   // Returning the page.         
   return (
@@ -193,17 +194,17 @@ const Event = () => {
                   <div className="flex flex-col justify-center space-y-4">
                   <button className="px-6 py-2 text-[#03663F] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#03663F] hover:text-white"
                             value="approve"
-                            onClick={eventResponseClick}>
+                            >
                       Approve Event
                     </button>
                     <button className="px-6 py-2 text-[#8A2623] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#8A2623] hover:text-white"
                             value="decline"
-                            onClick={eventResponseClick}>
+                            >
                       Decline Event
                     </button>
                     <button className="px-6 py-2 text-white font-bold bg-black rounded-full hover:bg-green-800"
                             value="review"
-                            onClick={eventResponseClick}>
+                            >
                       Place on Review
                     </button>
                   </div>
