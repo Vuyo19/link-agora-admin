@@ -20,9 +20,8 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const [isHovered, setIsHovered] = useState(false);
-  const [isNotificationCenterOpen, setIsNotificationCenterOpen] = useState(
-    false
-  );
+  const [isNotificationCenterOpen, setIsNotificationCenterOpen] =
+    useState(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -85,7 +84,6 @@ export default function NavBar() {
                               <BiExclude className="inline-block h-5 w-5 mr-2" />{" "}
                               {item.name}
                             </>
-
                           )}
                           {item.name === "Need Help" && (
                             <>
@@ -122,9 +120,7 @@ export default function NavBar() {
                     )}
                   </button>
 
-  <div
-    class="inline-block h-8 w-0.5 bg-gray-200 mr-5 ml-5"></div>
-
+                  <div class="inline-block h-8 w-0.5 bg-gray-200 mr-5 ml-5"></div>
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative">

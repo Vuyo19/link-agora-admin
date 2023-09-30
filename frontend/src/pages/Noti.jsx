@@ -1,5 +1,5 @@
-import React from 'react'
-import NotificationCenter from '../components/Notification/NotificationCenter'
+import React from "react";
+import NotificationCenter from "../components/Exterior/Notification/NotificationCenter";
 
 const Noti = () => {
   return (
@@ -9,7 +9,7 @@ const Noti = () => {
         <NotificationCenter />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Noti
+export default Noti;

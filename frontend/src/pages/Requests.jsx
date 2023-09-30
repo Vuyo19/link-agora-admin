@@ -8,7 +8,7 @@ const Requests = () => {
     <div className="flex items-center min-h-screen bg-[#fafbfd]">
       <div className="w-full px-5 mx-auto lg:container">
         {/* Table */} 
-        <RequestTable />
+        <RequestTable/>
       </div>
     </div>
   );

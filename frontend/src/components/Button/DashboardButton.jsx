@@ -1,6 +1,6 @@
 import React from "react";
 
-const StatsCard = ({ title, icon, subtitle, info }) => {
+const DashboardButton = ({ title, icon, subtitle, info }) => {
   return (
     <div className="group relative flex flex-col mb-4 w-40 h-40 sm:w-52 sm:h-52 md-medium md:w-72 md:h-full lg:w-64 rounded-md border bg-white text-black py-6 sm:py-8 px-2  shadow-lg transition-all duration-200 ease-in-out responsive-stats-card">
       <div className="flex flex-col items-center justify-between -mt-4 sm:-mt-5">
@@ -36,4 +36,4 @@ const StatsCard = ({ title, icon, subtitle, info }) => {
   );
 };
 
-export default StatsCard;
+export default DashboardButton;

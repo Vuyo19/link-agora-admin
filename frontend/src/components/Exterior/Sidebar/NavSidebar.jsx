@@ -1,31 +1,24 @@
 import React, { useState, useEffect } from "react";
-import useWindowSize from "../useWindowSize";
-
+import { useLocation } from "react-router-dom"; // Import useLocation
+import useWindowSize from "../../useWindowSize";
 import { HiMenuAlt3 } from "react-icons/hi";
-import {
-  LayoutDashboard,
-  CalendarDays,
-  CalendarClock,
-  ListTodo,
-  Settings,
-} from "lucide-react";
+import { LayoutDashboard, CalendarClock, ListTodo, CalendarDays, Settings, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-
-import logo from "../../assets/logooption1.png";
-
-import "../Sidebar/NavSidebar"; // Import your CSS file
+import logo from "../../../assets/link-agora-logo.png";
+import "./NavSidebar.css"; // Import your CSS file
 
 const NavSidebar = () => {
   const windowSize = useWindowSize();
+  const location = useLocation(); // Get the current location
 
   const menus = [
     { name: "Dashboard", link: "/", icon: LayoutDashboard },
     { name: "Requests", link: "/requests", icon: CalendarClock },
-    { name: "Manage", link: "/manage", icon: ListTodo, margin: true },
+    { name: "Manage", link: "/manage", icon: ListTodo },
     { name: "Setting", link: "/settings", icon: Settings },
   ];
+
   const [open, setOpen] = useState(false);
-  const [close, setClose] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState(0); // Track the selected menu index
 
   useEffect(() => {
@@ -42,32 +35,48 @@ const NavSidebar = () => {
       } duration-500 text-gray-100 px-4`}
       style={{ position: "sticky", top: 0, zIndex: 50 }}
     >
-      <div className="py-3 flex justify-between items-center">
-        <div className={`transition-all ${open ? "w-20 h-20" : "w-0"}`}>
+      {/* Logo */}
+      <div className="flex justify-center items-center mt-4">
+        <div className={`transition-all ${open ? "w-40 h-28" : "w-0"}`}>
           <img src={logo} className="h-full" alt="Logo" />
         </div>
+      </div>
+
+      {/* Menu Icon at Top Right */}
+      <div className="absolute top-0 right-0 mt-4 mr-4">
         {windowSize.width && windowSize.width >= 1200 && (
-          <HiMenuAlt3
-            size={26}
-            className="cursor-pointer"
-            onClick={() => setOpen(!open)}
-          />
+          open ? (
+            // Menu Icon when closed
+            <HiMenuAlt3
+              size={26}
+              className="cursor-pointer"
+              onClick={() => setOpen(!open)}
+            />
+          ) : (
+            // Menu icon when opened
+            <Menu
+              size={26}
+              className="cursor-pointer"
+              onClick={() => setOpen(!open)}
+            />
+          )
         )}
       </div>
 
       {/* White line separator above the menu items */}
       <div
-        className={`h-0.5 w-full bg-white mt-4 ${open ? "block" : "hidden"}`}
+        className={`h-0.5 w-full bg-white mt-6 ${open ? "block" : "hidden"}`}
       />
 
-      <div className="mt-12 flex flex-col gap-8 relative">
+      {/* Sidebar Menu Items */}
+      <div className="mt-16 flex flex-col gap-8 relative">
         {menus?.map((menu, i) => (
           <Link
             to={menu?.link}
             key={i}
-            onClick={() => setSelectedMenu(i)} // Set the selected menu index
-            className={`group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md ${
-              selectedMenu === i ? "bg-[#01663E]" : "" // Apply green background to the selected menu
+            onClick={() => setOpen(false)} // Close the sidebar on menu item click
+            className={`group flex items-center text-sm -mr-[0.25rem] gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md ${
+              location.pathname === menu.link ? "bg-[#01663E]" : ""
             } ${menu?.margin && i !== 0 ? "mt-0" : ""}`}
           >
             <div>{React.createElement(menu?.icon, { size: "20" })}</div>
@@ -84,7 +93,7 @@ const NavSidebar = () => {
             <h2
               className={`${
                 open && "hidden"
-              } absolute left-48 bg-[#C2F6CA] font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+              } absolute left-48 bg-[#0e0e0e] font-semibold whitespace-pre text-white rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
             >
               {menu?.name}
             </h2>

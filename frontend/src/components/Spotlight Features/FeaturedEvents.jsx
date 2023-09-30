@@ -8,7 +8,7 @@ import { ChevronRight } from "lucide-react";
 import { RiFileList3Line } from "react-icons/ri";
 import { RiUser3Line } from "react-icons/ri";
 
-const MyEvents = () => {
+const FeaturedEvents = () => {
   const images = [
     {
       id: 1,
@@ -153,4 +153,4 @@ const MyEvents = () => {
   );
 };
 
-export default MyEvents;
+export default FeaturedEvents;

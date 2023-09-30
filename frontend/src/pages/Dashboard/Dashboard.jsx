@@ -2,8 +2,8 @@ import React from "react";
 import useWindowSize from "../../components/useWindowSize";
 
 // Importing Components
-import StatsCard from "../../components/Cards/StatsCard";
-import MyEvents from "../../components/MyEvents/MyEvents";
+import DashboardButton from "../../components/Button/DashboardButton";
+import MyEvents from "../../components/Spotlight Features/FeaturedEvents";
 
 
 
@@ -30,13 +30,13 @@ const Dashboard = () => {
         {/* Stats  card aligned 3 per row */}
 
         <div className="button-group">
-          <StatsCard
+          <DashboardButton
             title="Upcoming Events"
             icon={<TbCalendarStar  color="#016138" />}
             subtitle="12 upcoming events"
             info={<Link to="/upcomingevents">Click to view all your upcoming events</Link>}
           />
-          <StatsCard
+          <DashboardButton
             title="Completed Events"
             icon={<LuCalendarCheck2  color="#016138" />}
             iconBackgroundColor="#edf6ff"
@@ -49,14 +49,14 @@ const Dashboard = () => {
         </div>
 
         <div className="button-group-2">
-          <StatsCard
+          <DashboardButton
             title="Flagged Events"
             icon={<BiError  color="#016138" />}
             iconBackgroundColor="#f6f2ff"
             subtitle="4 flagged events"
             info="Click to view all your upcoming events"
           />
-          <StatsCard
+          <DashboardButton
             title="Declined Events"
             icon={<RiDeleteBin5Line color="#016138" />}
             iconBackgroundColor="#fdf0f6"

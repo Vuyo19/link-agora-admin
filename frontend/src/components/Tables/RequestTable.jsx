@@ -7,14 +7,11 @@ import { BsCalendar2Event } from "react-icons/bs";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { MdPendingActions } from "react-icons/md";
 import { LiaBalanceScaleSolid } from "react-icons/lia";
-
-
-
-
-
 import { FiSearch } from "react-icons/fi";
 
+
 function RequestTable() {
+
   return (
     <>
       <section className="container px-4 mx-auto">

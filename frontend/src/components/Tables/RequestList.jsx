@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import EventDetailsModal from '../../pages/Sub-Pages/EventDetailsModal';
 
 const RequestList = ({
   eventId,
@@ -11,6 +12,17 @@ const RequestList = ({
   statusColor,
   progressBarWidth,
 }) => {
+
+  const [isEventDetailsOpen, setIsEventDetailsOpen] = useState(false);
+
+  const openEventDetails = () => {
+    setIsEventDetailsOpen(true);
+  };
+  
+  const closeEventDetails = () => {
+    setIsEventDetailsOpen(false);
+  };
+  
   return (
     <tr>
       <td className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">
@@ -46,13 +58,18 @@ const RequestList = ({
       {/* Open Event Details Button */}
       <td className="relative py-3.5 px-4">
         {/* Wrap the button with a Link component */}
-        <Link to={`/eventDetails`} className="block">
-          <button className="px-1 py-1 text-white transition-colors duration-200 rounded-md bg-[#8A2623] hover:bg-[#01663E]">
+        <div className="block">
+          <button className="px-1 py-1 text-white transition-colors duration-200 rounded-md bg-[#8A2623] hover:bg-[#01663E]"
+          onClick={openEventDetails}>
             {/* arrow icon */}
             <FaArrowRight className="w-3 h-3" />
           </button>
-        </Link>
+        </div>
       </td>
+      {isEventDetailsOpen && (
+  <EventDetailsModal isOpen={isEventDetailsOpen} onClose={closeEventDetails} />
+)}
+
     </tr>
   );
 };
