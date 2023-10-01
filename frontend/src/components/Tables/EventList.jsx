@@ -20,7 +20,7 @@ const EventList = ({
         </div>
       </td>
       <td className="px-12 py-3.5 text-sm font-bold text-left rtl:text-right text-black">
-        <div className="inline px-3 py-1 text-sm font-normal rounded-lg text-black gap-x-2" style={{ background: statusColor }}> 
+        <div className="inline px-3 py-1 text-sm font-normal rounded-full text-green-500 gap-x-2" style={{ background: statusColor }}> 
           {eventStatus}
         </div>
       </td>
@@ -37,7 +37,7 @@ const EventList = ({
       <td className="px-4 py-3.5 text-sm text-left rtl:text-right text-black">
         <div className="w-48 h-1.5 bg-[#EBFAE4] overflow-hidden rounded-full">
           <div
-            className="bg-[#81CF7A] w-2/3 h-1.5" 
+            className="bg-green-500 w-2/3 h-1.5" 
             style={{ width: progressBarWidth }}
             aria-label="Progress bar"
           ></div>

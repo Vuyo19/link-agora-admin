@@ -3,10 +3,6 @@ import RequestList from "./RequestList";
 import Stating from "../Stats/Stating";
 
 // Importing React-Icons
-import { BsCalendar2Event } from "react-icons/bs";
-import { MdOutlinePeopleAlt } from "react-icons/md";
-import { MdPendingActions } from "react-icons/md";
-import { LiaBalanceScaleSolid } from "react-icons/lia";
 import { FiSearch } from "react-icons/fi";
 
 
@@ -16,39 +12,10 @@ function RequestTable() {
     <>
       <section className="container px-4 mx-auto">
         <div className="sm:flex sm:items-center sm:justify-between">
-          {/* Stat Cards */}
-          <div>
-            <h1 className="text-5xl font-semibold text-gray-800 mt-8 mb-10">Requested Events</h1>
-            <div className="flex flex-col mt-4 gap-2 sm:flex-row sm:flex-wrap md:flex-row md:flex-wrap">
-              {/* Stats cards components */}
-              <Stating
-                icon={<MdOutlinePeopleAlt size={48} color="#f66e6e" />}
-                title="Event Organisers"
-                value="10"
-              />
-
-              <Stating
-                icon={<MdPendingActions size={48} color="#f66e6e" />}
-                title="Pending Events"
-                value="5"
-              />
-
-              <Stating
-                icon={<LiaBalanceScaleSolid size={48} color="#f66e6e" />}
-                title="Total Appeals"
-                value="2"
-              />
-
-              <Stating
-                icon={<BsCalendar2Event size={40} color="#f66e6e" />}
-                title="Total Events"
-                value="12"
-              />
-            </div>
-            <div className="flex items-center gap-x-3 mb-6">
-              <h2 className="text-3xl font-medium text-black">Events</h2>
-            </div>
-          </div>
+                        {/* Heading */}
+            <div className="flex items-center gap-x-3 -mt-8 mb-6">
+              <h1 className="text-3xl font-medium text-black">Events</h1>
+            </div>       
         </div>
 
         <div className="-mt-2 md:flex md:items-center md:justify-between">
@@ -162,7 +129,7 @@ function RequestTable() {
                       eventId="6783"
                       organiser="Jasmine Ming"
                       eventStatus="Pending"
-                      statusColor="#f0c9c8"
+                      statusColor="#F7EEF2"
                       eventDate="03-08-2023"
                       eventVenue="Think Tank 1"
                       progressBarWidth="w-2/3 h-1.5"
@@ -176,7 +143,7 @@ function RequestTable() {
                       eventId="6783"
                       organiser="Jasmine Ming"
                       eventStatus="Pending"
-                      statusColor="#f0c9c8"
+                      statusColor="#F7EEF2"
                       eventDate="20-08-2023"
                       eventVenue="Think Tank 2"
                       progressBarWidth="w-2/3 h-1.5"
@@ -190,7 +157,7 @@ function RequestTable() {
                       eventId="6783"
                       organiser="Jasmine Ming"
                       eventStatus="Pending"
-                      statusColor="#f0c9c8"
+                      statusColor="#F7EEF2"
                       eventDate="10-08-2023"
                       eventVenue="Think Tank 3"
                       progressBarWidth="w-2/3 h-1.5"
@@ -204,7 +171,7 @@ function RequestTable() {
                       eventId="6783"
                       organiser="Jasmine Ming"
                       eventStatus="Pending"
-                      statusColor="#f0c9c8"
+                      statusColor="#F7EEF2"
                       eventDate="15-08-2023"
                       eventVenue="Think Tank 4"
                       progressBarWidth="w-2/3 h-1.5"
@@ -218,22 +185,9 @@ function RequestTable() {
                       eventId="6783"
                       organiser="Jasmine Ming"
                       eventStatus="Pending"
-                      statusColor="#f0c9c8"
+                      statusColor="#F7EEF2"
                       eventDate="17-08-2023"
                       eventVenue="Think Tank 5"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                  </tbody>
-
-                  {/* Row 6 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#f0c9c8"
-                      eventDate="23-08-2023"
-                      eventVenue="Think Tank 6"
                       progressBarWidth="w-2/3 h-1.5"
                     />
                   </tbody>

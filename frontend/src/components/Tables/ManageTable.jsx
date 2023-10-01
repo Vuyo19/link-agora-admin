@@ -1,11 +1,8 @@
 import React from "react";
 import EventList from "./EventList";
 import Stating from "../Stats/Stating";
+
 // Importing React-Icons
-import { BsCalendar2Event } from "react-icons/bs";
-import { MdOutlinePeopleAlt } from "react-icons/md";
-import { MdPendingActions } from "react-icons/md";
-import { LiaBalanceScaleSolid } from "react-icons/lia";
 import { FiSearch } from "react-icons/fi";
 
 
@@ -14,41 +11,12 @@ function ManageTable() {
   return (
     <>
       <section className="container px-4 mx-auto">
-<div className="sm:flex sm:items-center sm:justify-between">
-  {/* Stat Cards */}
-  <div>
-  <h1 className="text-5xl font-semibold text-gray-800 mt-8 mb-10">Approved Events</h1>
-    <div className="flex flex-col mt-4 gap-2 sm:flex-row sm:flex-wrap md:flex-row md:flex-wrap">
-      {/* Stats cards components */}
-      <Stating
-        icon={<MdOutlinePeopleAlt size={48} color="#5AC369" />}
-        title="Event Organisers"
-        value="10"
-      />
-
-      <Stating
-        icon={<MdPendingActions size={48} color="#5AC369" />}
-        title="Pending Events"
-        value="5"
-      />
-
-      <Stating
-        icon={<LiaBalanceScaleSolid size={48} color="#5AC369" />}
-        title="Total Appeals"
-        value="2"
-      />
-
-      <Stating
-        icon={<BsCalendar2Event size={40} color="#5AC369" />}
-        title="Total Events"
-        value="12"
-      />
-    </div>
-    <div className="flex items-center gap-x-3 mb-6">
-      <h2 className="text-3xl font-medium text-black">Events</h2>
-    </div>
-  </div>
-</div>
+      <div className="sm:flex sm:items-center sm:justify-between">
+                        {/* Heading */}
+            <div className="flex items-center gap-x-3 -mt-8 mb-6">
+              <h1 className="text-3xl font-medium text-black">Events</h1>
+            </div>       
+        </div>
 
 
         <div className="-mt-2 md:flex md:items-center md:justify-between">
@@ -225,18 +193,6 @@ function ManageTable() {
                     />
                   </tbody>
 
-                  {/* Row 6 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <EventList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Confirmed"
-                      statusColor="#C2F6CA"
-                      eventDate="23-08-2023"
-                      eventVenue="Think Tank 6"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                  </tbody>
                 </table>
               </div>
             </div>
