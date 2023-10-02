@@ -1,21 +1,19 @@
 import React from "react";
-import RequestList from "./RequestList";
-import Stating from "../Stats/Stating";
+import RequestList from "./RequestTableItem";
+import Stating from "../../Card/Statistics/Stating";
 
 // Importing React-Icons
 import { FiSearch } from "react-icons/fi";
 
-
 function RequestTable() {
-
   return (
     <>
       <section className="container px-4 mx-auto">
         <div className="sm:flex sm:items-center sm:justify-between">
-                        {/* Heading */}
-            <div className="flex items-center gap-x-3 -mt-8 mb-6">
-              <h1 className="text-3xl font-medium text-black">Events</h1>
-            </div>       
+          {/* Heading */}
+          <div className="flex items-center gap-x-3 -mt-8 mb-6">
+            <h1 className="text-3xl font-medium text-black">Events</h1>
+          </div>
         </div>
 
         <div className="-mt-2 md:flex md:items-center md:justify-between">
@@ -204,7 +202,6 @@ function RequestTable() {
           </div>
 
           <div class="flex items-center mt-4 gap-x-4 sm:mt-0">
-
             {/* Previous Button */}
             <a
               href="#"

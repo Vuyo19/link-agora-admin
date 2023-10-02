@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import poster from "../../assets/event1poster.jpg"; // Replace with processed image
-import poster2 from "../../assets/event2poster.jpeg"; // Replace with processed image
-import poster3 from "../../assets/event3poster.jpeg"; // Replace with processed image
+import poster from "../../../assets/event1poster.jpg"; 
+import poster2 from "../../../assets/event2poster.jpeg"; 
+import poster3 from "../../../assets/event3poster.jpeg"; 
 
 import { ChevronLeft } from "lucide-react";
 import { ChevronRight } from "lucide-react";

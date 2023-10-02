@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import EventDetailsModal from "../../pages/Sub-Pages/EventDetailsModal";
+import EventDetailsModal from "../../Modals/Request Event Details/EventDetailsModal";
 
 const RequestList = ({
   eventId,

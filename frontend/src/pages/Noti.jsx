@@ -1,5 +1,5 @@
 import React from "react";
-import NotificationCenter from "../components/Exterior/Notification/NotificationCenter";
+import NotificationCenter from "../components/Modals/Notification/NotificationCenter";
 
 const Noti = () => {
   return (

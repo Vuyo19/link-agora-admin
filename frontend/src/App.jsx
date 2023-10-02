@@ -4,16 +4,16 @@ import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 // Importing Pages
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/Main Page/Dashboard";
 import Requests from "./pages/Requests";
 import Manage from "./pages/Manage";
 import SettingsPage from "./pages/SettingsPage";
 import Profile from "./pages/Profile/Profile";
 import NeedHelp from "./pages/NeedHelp/NeedHelp";
-import UpcomingEvents from "./pages/Upcoming Events/UpcomingEvents";
+import UpcomingEvents from "./pages/Dashboard/Dashboard Sub-Pages/UpcomingEvents";
 import Noti from "./pages/Noti";
 import Login from "./pages/Login/Login";
-import EventDetails from "./pages/Sub-Pages/EventDetailsModal";
+import EventDetails from "./components/Modals/Request Event Details/EventDetailsModal";
 
 // Importing component
 import NavSideBar from "./components/Exterior/Sidebar/NavSidebar";

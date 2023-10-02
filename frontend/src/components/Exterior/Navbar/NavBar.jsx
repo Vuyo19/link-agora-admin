@@ -7,7 +7,7 @@ import { BiExclude } from "react-icons/bi";
 import { FiHelpCircle } from "react-icons/fi";
 import { FaHandsHelping } from "react-icons/fa";
 import { X } from "lucide-react";
-import NotificationCenter from "../Notification/NotificationCenter";
+import NotificationCenter from "../../Modals/Notification/NotificationCenter";
 
 const navigation = [
   { name: "Take me to BMF", href: "https://bmfonline.co.za/", current: false },

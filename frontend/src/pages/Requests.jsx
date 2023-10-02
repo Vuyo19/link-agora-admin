@@ -1,5 +1,5 @@
 import React from "react";
-import Stating from "../components/Stats/Stating";
+import Stating from "../components/Card/Statistics/Stating";
 
 // Importing React-Icons
 import { BsCalendar2Event } from "react-icons/bs";
@@ -7,11 +7,8 @@ import { MdOutlinePeopleAlt } from "react-icons/md";
 import { MdPendingActions } from "react-icons/md";
 import { LiaBalanceScaleSolid } from "react-icons/lia";
 
-
-
-
 // Importing Components
-import RequestTable from "../components/Tables/RequestTable";
+import RequestTable from "../components/Tables/Request/RequestTable";
 
 const Requests = () => {
   return (
@@ -57,12 +54,13 @@ const Requests = () => {
         </div>
 
         {/* Table Section */}
-        <div className="w-full h-[400px]  px-5 mx-auto lg:container mt-10"> {/* Add margin-top to separate the sections */}
-          <RequestTable/>
+        <div className="w-full h-[400px]  px-5 mx-auto lg:container mt-10">
+          {" "}
+          {/* Add margin-top to separate the sections */}
+          <RequestTable />
         </div>
       </div>
     </div>
-
   );
 };
 

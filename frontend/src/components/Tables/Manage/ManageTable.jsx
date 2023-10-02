@@ -1,23 +1,19 @@
 import React from "react";
-import EventList from "./EventList";
-import Stating from "../Stats/Stating";
+import EventList from "./ManageTableItem";
 
 // Importing React-Icons
 import { FiSearch } from "react-icons/fi";
-
-
 
 function ManageTable() {
   return (
     <>
       <section className="container px-4 mx-auto">
-      <div className="sm:flex sm:items-center sm:justify-between">
-                        {/* Heading */}
-            <div className="flex items-center gap-x-3 -mt-8 mb-6">
-              <h1 className="text-3xl font-medium text-black">Events</h1>
-            </div>       
+        <div className="sm:flex sm:items-center sm:justify-between">
+          {/* Heading */}
+          <div className="flex items-center gap-x-3 -mt-8 mb-6">
+            <h1 className="text-3xl font-medium text-black">Events</h1>
+          </div>
         </div>
-
 
         <div className="-mt-2 md:flex md:items-center md:justify-between">
           {/* ... Search and filter buttons ... */}
@@ -37,7 +33,7 @@ function ManageTable() {
 
           <div class="relative flex items-center mt-6 md:mt-0">
             <span class="absolute">
-            <FiSearch className="w-5 h-5 ml-2" color="#6d6d6d" />
+              <FiSearch className="w-5 h-5 ml-2" color="#6d6d6d" />
             </span>
 
             <input
@@ -192,7 +188,6 @@ function ManageTable() {
                       progressBarWidth="w-2/3 h-1.5"
                     />
                   </tbody>
-
                 </table>
               </div>
             </div>
