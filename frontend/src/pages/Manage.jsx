@@ -1,8 +1,11 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 // Importing Components
 import ManageTable from "../components/Tables/Manage/ManageTable";
 import Stating from "../components/Card/Statistics/Stating";
+import BarLoader from "react-spinners/BarLoader";
+
 
 // Importing React-Icons
 import { BsCalendar2Event } from "react-icons/bs";
@@ -11,9 +14,18 @@ import { MdPendingActions } from "react-icons/md";
 import { LiaBalanceScaleSolid } from "react-icons/lia";
 
 const Manage = () => {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
   return (
-    <div className="flex items-center h-full bg-[#fafbfd]">
-      {/* Flex Container for Horizontal Alignment */}
+    <div className="flex items-center justify-center h-screen bg-[#fafbfd]">
+            {loading ? (
+        <BarLoader color={"#01663E"} loading={loading} size={150} />
+      ) : (
       <div className="flex flex-col w-full">
         {/* Top Section */}
         <div className="w-full bg-[#fafbfd] px-5 z-10">
@@ -60,6 +72,7 @@ const Manage = () => {
           <ManageTable />
         </div>
       </div>
+            )}
     </div>
   );
 };
