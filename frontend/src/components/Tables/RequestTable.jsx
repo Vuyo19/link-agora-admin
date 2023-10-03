@@ -25,7 +25,8 @@ function RequestTable() {
 
   const filterEventRequestButton = async (value) => {
 
-    setActiveButton(value)
+    setActiveButton(value);
+    
     // Reassigning the events into the EventsTable. 
     try {
       const eventsData = await filterRequestResponse(value); // Wait for the response
