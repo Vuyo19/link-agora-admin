@@ -60,6 +60,7 @@ class Event(models.Model):
     venue = models.CharField(max_length=255)
     capacity = models.PositiveIntegerField()
     organizer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='organized_events')
+    type = models.CharField(max_length=100, null=True)
 
     # Address fields
     address1 = models.CharField(max_length=255)

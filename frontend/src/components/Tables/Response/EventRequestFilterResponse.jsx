@@ -21,12 +21,12 @@ async function filterManageResponse(value) {
             const responseData = await response.json();  
             return responseData.events; // Update events_table state 
   
-          } else {
+        } else {
             alert('Request failed');
             // console.error('Request failed:', response.status, response.statusText); 
             return null; // Return null or an appropriate value in case of an error
 
-          }
+        }
         
       } catch(error) {
         console.error('Request error:', error); 

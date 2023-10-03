@@ -14,7 +14,6 @@ def receive_event_requests(request):
     if request.method == 'POST':  
         try:
             # Loading all the events 
-            events = Event.objects.all()  
             serialized_events = [] 
             serialized_events_overview = [] # Creating the overview information of the event request. 
             for event in events:
