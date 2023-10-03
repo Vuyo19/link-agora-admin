@@ -24,11 +24,15 @@ function RequestTable() {
             </button>
 
             <button class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm">
-              Completed
+              In Queue
             </button>
 
             <button class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm ">
-              Not Completed
+              Under Review
+            </button> 
+
+            <button class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm ">
+              Complete
             </button>
           </div>
 
@@ -120,75 +124,12 @@ function RequestTable() {
                         <span class="sr-only">Edit</span>
                       </th>
                     </tr>
-                  </thead>
-                  {/* Row 1 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="03-08-2023"
-                      eventVenue="Think Tank 1"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
+                  </thead> 
 
-                  {/* Row 2 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="20-08-2023"
-                      eventVenue="Think Tank 2"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
+                  {/* Space for the populated request */} 
 
-                  {/* Row 3 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="10-08-2023"
-                      eventVenue="Think Tank 3"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
-
-                  {/* Row 4 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="15-08-2023"
-                      eventVenue="Think Tank 4"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
-
-                  {/* Row 5 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="17-08-2023"
-                      eventVenue="Think Tank 5"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                  </tbody>
+                  
+                 
                 </table>
               </div>
             </div>
