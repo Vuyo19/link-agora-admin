@@ -161,14 +161,10 @@ def event_request_filter(request):
         serialized_events = [] 
         events = None
 
-        if filter_value == "stillPending": 
-            events = Event.objects.filter(eventtrack_id__name="Still pending")
-        elif filter_value == "inProgress":  
-            events = Event.objects.filter(eventtrack_id__name="In Progress")
-        elif filter_value == "halfway": 
-            events = Event.objects.filter(eventtrack_id__name="Halfway")
-        elif filter_value == "almostComplete": 
-            events = Event.objects.filter(eventtrack_id__name="Almost Complete")
+        if filter_value == "inQueue": 
+            events = Event.objects.filter(eventtrack_id__name="In Queue")
+        elif filter_value == "underReview":  
+            events = Event.objects.filter(eventtrack_id__name="Under Review")
         elif filter_value == "complete": 
             events = Event.objects.filter(eventtrack_id__name="Complete")  
         else: 

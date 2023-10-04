@@ -274,21 +274,7 @@ function RequestTable() {
                       />
                     </tbody>  
                   ))} 
-
-                  {/* Row 2 
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#f0c9c8"
-                      eventDate="20-08-2023"
-                      eventVenue="Think Tank 2"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                  </tbody> */}
-
-                  
+      
 
                   
                 </table>
