@@ -1,6 +1,6 @@
 import React from "react";
 import RequestList from "./RequestTableItem";
-import Stating from "../../Card/Statistics/Stating";
+
 
 // Importing React-Icons
 import { FiSearch } from "react-icons/fi";

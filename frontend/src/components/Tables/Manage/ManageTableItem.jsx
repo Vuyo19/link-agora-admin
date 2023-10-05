@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaArrowRight } from "react-icons/fa";
+import ManageEventModal from '../../Modals/Manage Event Details/ManageEventModal';
+
 
 
 const EventList = ({
@@ -11,6 +13,15 @@ const EventList = ({
   statusColor,
   progressBarWidth,
 }) => {
+  const [isEventDetailsOpen, setIsEventDetailsOpen] = useState(false);
+
+  const openEventDetails = () => {
+    setIsEventDetailsOpen(true);
+  };
+
+  const closeEventDetails = () => {
+    setIsEventDetailsOpen(false);
+  };
   return (
     <tr>
       <td className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-black">
@@ -44,11 +55,19 @@ const EventList = ({
         </div>
       </td>
       <td className="relative py-3.5 px-4">
-        <button className="px-1 py-1 text-white transition-colors duration-200 rounded-md bg-[#01663E] hover:bg-[#8A2623]">
+        <button className="px-1 py-1 text-white transition-colors duration-200 rounded-md bg-[#01663E] hover:bg-[#8A2623]"
+        onClick={openEventDetails}
+        >
          {/* arrow icon */}
          <FaArrowRight className="w-3 h-3" />
         </button>
       </td>
+      {isEventDetailsOpen && (
+        <ManageEventModal
+          isOpen={isEventDetailsOpen}
+          onClose={closeEventDetails}
+        />
+      )}
     </tr>
   );
 };

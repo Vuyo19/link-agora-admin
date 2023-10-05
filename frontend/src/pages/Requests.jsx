@@ -29,7 +29,7 @@ const Requests = () => {
           {/* Top Section */}
           <div className="w-full bg-[#fafbfd] px-5 z-10">
             <div className="w-full px-8 mx-auto lg:container">
-              <div className="flex justify-start items-center">
+              <div className="flex justify-start items-center -mt-28">
                 <h1 className="text-5xl font-semibold text-gray-800">
                   Requested Events
                 </h1>

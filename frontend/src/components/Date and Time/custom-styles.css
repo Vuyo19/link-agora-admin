@@ -1,0 +1,32 @@
+/* custom-styles.css */
+.my-timepicker-class .MuiOutlinedInput-input {
+  color: #6b7280  !important; /* Change this to your desired text color */
+  font-size: 12px !important; /* Change this to your desired font size */
+}
+
+.my-timepicker-class .MuiClockNumber {
+  color: #6b7280 !important; /* Change this to your desired text color */
+  font-size: 12px !important; /* Change this to your desired font size */
+}
+
+.my-timepicker-class .MuiOutlinedInput-notchedOutline {
+  border-color: rgb(209 213 219) !important; /* Change the border color */
+  border-width: 1px !important; /* Increase the border thickness to 2px */
+}
+
+/* custom-styles.css */
+.my-datepicker-container .my-datepicker-class .MuiInputBase-input {
+  color: #6b7280 !important; /* Change this to your desired text color */
+  font-size: 12px !important; /* Change this to your desired font size */
+}
+
+.my-datepicker-container .my-datepicker-class .MuiPickersDay-day {
+  font-size: 12px !important; /* Change this to your desired font size */
+}
+
+.my-datepicker-container .my-datepicker-class .MuiOutlinedInput-notchedOutline {
+  border-color: rgb(209, 213, 219) !important; /* Change the border color */
+  border-width: 1px !important; /* Increase the border thickness to 2px */
+}
+
+

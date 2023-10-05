@@ -24,18 +24,6 @@ const SearchBar = () => {
   <span>Find Events</span>
 </div>
 
-
-          <div class=" w-16 h-16 text-black flex items-center justify-center rounded-lg cursor-pointer hover:bg-gray-200">
-            <span>List</span>
-          </div>
-
-          <div class=" w-16 h-16 text-black flex items-center justify-center rounded-lg cursor-pointer hover:bg-gray-200">
-            <span>Month</span>
-          </div>
-
-          <div class=" w-16 h-16 text-black flex items-center justify-center rounded-lg cursor-pointer hover:bg-gray-200">
-            <span>Day</span>
-          </div>
         </div>
 </div>
  

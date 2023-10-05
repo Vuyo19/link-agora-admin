@@ -10,7 +10,7 @@ import Manage from "./pages/Manage";
 import SettingsPage from "./pages/SettingsPage";
 import Profile from "./pages/Profile/Profile";
 import NeedHelp from "./pages/NeedHelp/NeedHelp";
-import UpcomingEvents from "./pages/Dashboard/Dashboard Sub-Pages/UpcomingEvents";
+import PersonalInbox from "./pages/Dashboard/Dashboard Sub-Pages/PersonalInbox";
 import Noti from "./pages/Noti";
 import Login from "./pages/Login/Login";
 import EventDetails from "./components/Modals/Request Event Details/EventDetailsModal";
@@ -35,6 +35,7 @@ const App = () => {
     "/profile",
     "/needhelp",
     "/upcomingevents",
+    "/PersonalInbox",
     "/noti",
   ];
 
@@ -54,7 +55,7 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/needhelp" element={<NeedHelp />} />
             <Route path="/eventDetails" element={<EventDetails />} />
-            <Route path="/upcomingevents" element={<UpcomingEvents />} />
+            <Route path="/PersonalInbox" element={<PersonalInbox />} />
             <Route path="/noti" element={<Noti />} />
             {/* Use the layout for the login page */}
             <Route
