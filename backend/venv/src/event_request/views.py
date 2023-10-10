@@ -58,11 +58,13 @@ def receive_event_requests_stat(request):
             event_request_count=Count('organized_events')
         ).filter(event_request_count__gt=0).count() 
 
-        # Query the number of events with EventTrack name set to "Still pending"
-        pending_events_count = Event.objects.filter(eventtrack_id__name="Still pending").count()
+        # Query the number of events with EventTrack name set to In Queue
+        events_in_queue_count = Event.objects.filter(eventtrack_id__name="In Queue").count()  
 
-        return JsonResponse({'event_organisers_num': organiser_count, 'events_pending_num': pending_events_count, 'total_events_num': ''})
+        # Query the number of events that are Under Review, 
+        events_under_review_count = Event.objects.filter(eventtrack_id__name="Under Review").count()   
 
+        return JsonResponse({'event_organisers_num': organiser_count, 'events_in_queue': events_in_queue_count, 'events_under_review': events_under_review_count})
     else: 
         return JsonResponse({'message': 'failed'}, status=400) 
  
@@ -81,7 +83,6 @@ def receive_event_request_detail(request):
         data = json.loads(request.body) 
 
         event_id = data.get('event_id') 
-        print(event_id)
 
         event_result = Event.objects.get(id=event_id)   
 

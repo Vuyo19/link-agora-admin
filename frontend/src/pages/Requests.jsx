@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Stating from "../components/Card/Statistics/Stating";
 import BarLoader from "react-spinners/BarLoader";
+import requestStatResponse from "../components/Tables/Response/EventRequestStatResponse";
 
 // Importing React-Icons
 import { BsCalendar2Event } from "react-icons/bs";
@@ -14,11 +15,27 @@ import RequestTable from "../components/Tables/Request/RequestTable";
 
 const Requests = () => {
   const [loading, setLoading] = useState(false);
+  const [request_stats_table, setRequestStatsTable] = useState([]) // Recording the history stats. 
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 5000); 
+
+    const fetchData = async () => {
+      try {
+        const responseData = await requestStatResponse();
+        setRequestStatsTable(responseData);
+      } catch (error) {
+        console.error('Error fetching history stats:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData(); 
+
   }, []);
   return (
     <div className="flex items-center justify-center h-screen bg-[#fafbfd]">
@@ -40,26 +57,21 @@ const Requests = () => {
                 <Stating
                   icon={<MdOutlinePeopleAlt size={48} color="#f66e6e" />}
                   title="Event Organisers"
-                  value="10"
+                  value={request_stats_table.event_organisers_num}
                 />
 
                 <Stating
                   icon={<MdPendingActions size={48} color="#f66e6e" />}
-                  title="Pending Events"
-                  value="5"
+                  title="In Queue"
+                  value={request_stats_table.events_in_queue}
                 />
 
                 <Stating
                   icon={<LiaBalanceScaleSolid size={48} color="#f66e6e" />}
-                  title="Total Appeals"
-                  value="2"
+                  title="Under Review"
+                  value={request_stats_table.events_under_review}
                 />
 
-                <Stating
-                  icon={<BsCalendar2Event size={40} color="#f66e6e" />}
-                  title="Total Events"
-                  value="12"
-                />
               </div>
             </div>
           </div>
