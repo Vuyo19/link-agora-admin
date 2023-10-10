@@ -121,7 +121,7 @@ def receive_event_request_detail(request):
 
 # Responding to the event request. Either accept, decline or put under review. 
 @csrf_exempt # WARNING! REMOVE WHEN GOING ON PRODUCTION.   
-def event_request_response(request): 
+def event_request_reply(request): 
 
     if request.method == 'POST':   
 
@@ -129,21 +129,51 @@ def event_request_response(request):
         data = json.loads(request.body)   
 
         event_id = data.get('event_id') # Getting the id of the event
-        event_response = data.get('event_response') # Getting the response of the event.  
+        event_reply = data.get('event_reply') # Getting the response of the event.    
+
+        event_instance = Event.objects.get(id=event_id) 
+        response = ""
 
         # Inspecting the type of response. 
-        if event_response == "review": 
-            event_instance = Event.objects.get(id=event_id)
 
-            mod_eventtrack = EventTrack.objects.get(id=2) # Getting the In Progress row
-            mod_status = Status.objects.get(id=1) # Getting the Under Review row. 
+        # If the event was placed under revieew
+        if event_reply == "underReview":  
+
+            mod_eventtrack = EventTrack.objects.get(id=2) # Getting under Review row
+            mod_status = Status.objects.get(id=1) # Getting the Under Review row.  
 
             # Changing the details of the event. 
             event_instance.eventtrack_id = mod_eventtrack
             event_instance.status_id = mod_status 
-            event_instance.save() 
+            event_instance.save()  
+            response = "Requested event has been placed under review!"
 
-        return JsonResponse({'message': 'Response saved!'})
+        # If the event was approved
+        elif event_reply == "approved":  
+
+            mod_eventtrack = EventTrack.objects.get(id=3) # Review complete
+            mod_status = Status.objects.get(id=2) # Changing the status to approved
+
+            # Changing the details of the event. 
+            event_instance.eventtrack_id = mod_eventtrack
+            event_instance.status_id = mod_status 
+            event_instance.save()  
+            response = "Requested event has been approved!"
+
+        # If the event was declined. 
+        elif event_reply == "declined":  
+
+            mod_eventtrack = EventTrack.objects.get(id=3) # Review complete
+            mod_status = Status.objects.get(id=3) # Changing the status to declined.   
+
+            # Changing the details of the event. 
+            event_instance.eventtrack_id = mod_eventtrack
+            event_instance.status_id = mod_status 
+            event_instance.save()  
+            response = "Requested event has been declined!"
+
+
+        return JsonResponse({'message': response}) # Sending the response. 
     else: 
         return JsonResponse({'message': 'failed'}, status=400) 
     

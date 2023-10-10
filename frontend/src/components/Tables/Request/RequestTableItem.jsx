@@ -19,16 +19,17 @@ const RequestList = ({
 
   async function openEventDetails(value) { 
     
-    alert(value);
-
+    // Getting the detailed event and then the admin will decide what to do next. 
     const event_request_detail = await requestEventDetailResponse(value); 
     setEventRequestDetail_Table(event_request_detail.event_detail); 
 
+    // Opening the event Details box. 
     setIsEventDetailsOpen(true);    
     
     
   };
 
+  // Closing the event details box. 
   const closeEventDetails = () => {
     setIsEventDetailsOpen(false);
   };
@@ -41,9 +42,9 @@ const RequestList = ({
           <h2 className="text-sm font-normal text-black">{organiser}</h2>
         </div>
       </td>
-      <td className="px-12 py-3.5 text-sm font-bold text-left rtl:text-right text-black">
+      <td className="px-12 py-3.5 text-lg font-bold text-left rtl:text-right text-white">
         <div
-          className="inline px-3 py-1 text-sm font-normal rounded-full text-red-500 gap-x-2"
+          className="inline px-3 py-1 text-lg font-normal rounded-full text-white-500 gap-x-2"
           style={{ background: statusColor }}
         >
           {eventStatus}
@@ -90,6 +91,7 @@ const RequestList = ({
           capacity={eventRequestDetail_Table.capacity} 
           status={eventRequestDetail_Table.status_label} 
           code={eventRequestDetail_Table.event_id_comm}
+          keyid={eventRequestDetail_Table.event_id}
         />
       )}
     </tr>

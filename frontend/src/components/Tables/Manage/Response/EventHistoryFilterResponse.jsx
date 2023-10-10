@@ -1,13 +1,12 @@
 // Filtering the event request based on the event track. 
-async function filterRequestResponse(value) {
+async function filterHistoryResponse(value) {
 
-    const url = 'http://127.0.0.1:8000/requests/api/event-request-filter/'; // Url to request the event requests. 
+    const url = 'http://127.0.0.1:8000/history/api/history-events-filter/'; // Url to request the event requests. 
     const requestData = {
       // Your data to be sent in the request body
       // Sending the specific event id to the server to get the specific event.  
       // Sending the value of the filter request.
-      event_response_filter: value 
-      
+      history_event_filter: value
     };
 
     try {
@@ -37,4 +36,4 @@ async function filterRequestResponse(value) {
       }
 }
 
-export default filterRequestResponse; 
+export default filterHistoryResponse; 

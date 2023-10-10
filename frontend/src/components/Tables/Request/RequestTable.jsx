@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import RequestList from "./RequestTableItem";
 import Stating from "../../Card/Statistics/Stating";
 import filterRequestResponse from "../Response/EventRequestFilterResponse";
-import filterManageResponse from "../Response/EventManageFilterResponse";
+import filterManageResponse from "../Manage/Response/EventHistoryFilterResponse";
 
 // Importing React-Icons
 import { FiSearch } from "react-icons/fi";
@@ -18,6 +18,7 @@ function RequestTable() {
   // Function to handle the filter clicks. 
   const filterEventRequestButton = async (value) => {
 
+    alert(value);
     setActiveButton(value);
     
     // Reassigning the events into the EventsTable. 
@@ -239,8 +240,7 @@ function RequestTable() {
                     </tbody>  
                   ))} 
 
-                  
-
+                
                   </table>
               </div>
             </div>

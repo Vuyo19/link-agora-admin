@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import ManageTable from "../components/Tables/Manage/ManageTable";
 import Stating from "../components/Card/Statistics/Stating";
 import BarLoader from "react-spinners/BarLoader";
+import historyStatResponse from "../components/Tables/Manage/Response/EventHistoryStatResponse";
 
 
 // Importing React-Icons
@@ -12,15 +13,35 @@ import { BsCalendar2Event } from "react-icons/bs";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { MdPendingActions } from "react-icons/md";
 import { LiaBalanceScaleSolid } from "react-icons/lia";
+import { AlertTriangle } from "lucide-react";
 
 const Manage = () => {
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
+  const [history_stats_table, setHistoryStatsTable] = useState([]) // Recording the history stats. 
+
+  useEffect(() => { 
+
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
-  }, []);
+    }, 5000);  
+
+    const fetchData = async () => {
+      try {
+        const responseData = await historyStatResponse();
+        setHistoryStatsTable(responseData);
+      } catch (error) {
+        console.error('Error fetching history stats:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+
+
+  }, []);   
+  
   return (
     <div className="flex items-center justify-center h-screen bg-[#fafbfd]">
             {loading ? (
@@ -41,25 +62,25 @@ const Manage = () => {
               <Stating
                 icon={<MdOutlinePeopleAlt size={48} color="#5AC369" />}
                 title="Event Organisers"
-                value="10"
+                value={history_stats_table.total_organisers}
               />
 
               <Stating
                 icon={<MdPendingActions size={48} color="#5AC369" />}
-                title="Pending Events"
-                value="5"
+                title="Approved Events"
+                value={history_stats_table.approved_events}
               />
 
               <Stating
                 icon={<LiaBalanceScaleSolid size={48} color="#5AC369" />}
-                title="Total Appeals"
-                value="2"
+                title="Declined Events"
+                value={history_stats_table.declined_events}
               />
 
               <Stating
                 icon={<BsCalendar2Event size={40} color="#5AC369" />}
                 title="Total Events"
-                value="12"
+                value={history_stats_table.total_events}
               />
             </div>
           </div>
