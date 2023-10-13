@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import EventDetailsModal from "../../Modals/Request Event Details/EventDetailsModal";
+import requestEventDetailResponse from "../Response/EventRequestDetailResponse";
 
 const RequestList = ({
   eventId,
@@ -11,13 +12,24 @@ const RequestList = ({
   eventStatus,
   statusColor,
   progressBarWidth,
+  keyid
 }) => {
-  const [isEventDetailsOpen, setIsEventDetailsOpen] = useState(false);
+  const [isEventDetailsOpen, setIsEventDetailsOpen] = useState(false); 
+  const [eventRequestDetail_Table, setEventRequestDetail_Table] = useState(); 
 
-  const openEventDetails = () => {
-    setIsEventDetailsOpen(true);
+  async function openEventDetails(value) { 
+    
+    // Getting the detailed event and then the admin will decide what to do next. 
+    const event_request_detail = await requestEventDetailResponse(value); 
+    setEventRequestDetail_Table(event_request_detail.event_detail); 
+
+    // Opening the event Details box. 
+    setIsEventDetailsOpen(true);    
+    
+    
   };
 
+  // Closing the event details box. 
   const closeEventDetails = () => {
     setIsEventDetailsOpen(false);
   };
@@ -30,9 +42,9 @@ const RequestList = ({
           <h2 className="text-sm font-normal text-black">{organiser}</h2>
         </div>
       </td>
-      <td className="px-12 py-3.5 text-sm font-bold text-left rtl:text-right text-black">
+      <td className="px-12 py-3.5 text-lg font-bold text-left rtl:text-right text-white">
         <div
-          className="inline px-3 py-1 text-sm font-normal rounded-full text-red-500 gap-x-2"
+          className="inline px-3 py-1 text-lg font-normal rounded-full text-white-500 gap-x-2"
           style={{ background: statusColor }}
         >
           {eventStatus}
@@ -63,7 +75,7 @@ const RequestList = ({
         <div className="block">
           <button
             className="px-1 py-1 text-white transition-colors duration-200 rounded-md bg-[#8A2623] hover:bg-[#01663E]"
-            onClick={openEventDetails}
+            onClick={() => openEventDetails(keyid)}  
           >
             {/* arrow icon */}
             <FaArrowRight className="w-3 h-3" />
@@ -74,6 +86,12 @@ const RequestList = ({
         <EventDetailsModal
           isOpen={isEventDetailsOpen}
           onClose={closeEventDetails}
+          venue={eventRequestDetail_Table.venue}
+          creator={eventRequestDetail_Table.organizer_name}
+          capacity={eventRequestDetail_Table.capacity} 
+          status={eventRequestDetail_Table.status_label} 
+          code={eventRequestDetail_Table.event_id_comm}
+          keyid={eventRequestDetail_Table.event_id}
         />
       )}
     </tr>

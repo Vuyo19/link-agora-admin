@@ -1,14 +1,15 @@
-// Filtering the event request based on the event track. 
-async function filterManageResponse(value) {
 
-    const url = 'http://127.0.0.1:8000/manage/api/managed-events-filter/'; // Url to request the event requests. 
+// Sending  the history stat response.
+async function historyStatResponse() { 
+
+    const url = 'http://127.0.0.1:8000/history/api/history-stats/'; // Url to request the event requests. 
     const requestData = {
       // Your data to be sent in the request body
       // Sending the specific event id to the server to get the specific event.  
       // Sending the value of the filter request.
-      event_manage_filter: value
-    };
+    };  
 
+    // Retrieving the events history stat. 
     try {
         const response = await fetch(url, {
           method: 'POST',
@@ -20,7 +21,7 @@ async function filterManageResponse(value) {
 
         if (response.ok) {
             const responseData = await response.json();  
-            return responseData.events; // Update events_table state 
+            return responseData.history_stats; // Update events_table state 
   
           } else {
             alert('Request failed');
@@ -34,6 +35,8 @@ async function filterManageResponse(value) {
         return null; // Return null or an appropriate value in case of an error
 
       }
-}
 
-export default filterManageResponse; 
+
+} 
+
+export default historyStatResponse;

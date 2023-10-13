@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls), 
     path('requests/', include('event_request.urls')), # going to the users urls.  
-    path('manage/', include('event_manage.urls'))  # api for managing the requests. 
+    path('history/', include('event_manage.urls'))  # api for managing the requests. 
 ]

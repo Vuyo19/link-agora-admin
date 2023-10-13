@@ -1,15 +1,72 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import RequestList from "./RequestTableItem";
-
+import Stating from "../../Card/Statistics/Stating";
+import filterRequestResponse from "../Response/EventRequestFilterResponse";
+import filterManageResponse from "../Manage/Response/EventHistoryFilterResponse";
 
 // Importing React-Icons
 import { FiSearch } from "react-icons/fi";
 
-// Importing Lucide-Icons
-import { MoveRight } from 'lucide-react';
-import { MoveLeft } from 'lucide-react';
-
 function RequestTable() {
+  const [events_table, setEventsTable] = useState([]);
+  const [request_stat, setRequestStat] = useState([]);
+
+  // Detecting which button was clicked and then changing the colour
+  const [activeButton, setActiveButton] = useState("viewAll"); // Initially, 'viewAll' is active.
+
+  // Function to handle the filter clicks.
+  const filterEventRequestButton = async (value) => {
+    alert(value);
+    setActiveButton(value);
+
+    // Reassigning the events into the EventsTable.
+    try {
+      const eventsData = await filterRequestResponse(value); // Wait for the response
+      setEventsTable(eventsData); // Update the events_table state
+    } catch (error) {
+      // Handle the error if needed
+      console.error("Error:", error);
+    } // Calling the class to make the request and then storing the results inside the EventsTable.
+  };
+
+  useEffect(() => {
+    // Code to run when the component mounts
+    // alert('Loading event requests...');
+
+    // Loading the send event requests.
+    const url = "http://127.0.0.1:8000/requests/api/event-requests/"; // Url to request the event requests.
+    const requestData = {
+      // Your data to be sent in the request body.
+    };
+
+    async function fetchData() {
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          setEventsTable(responseData.events); // Update events_table state.
+
+          const request_stat_pull = await requestStatResponse();
+          setRequestStat(request_stat_pull); // Updating the request_stat state.
+        } else {
+          alert("Request failed");
+          // console.error('Request failed:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error("Request error:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <section className="container px-4 mx-auto">
@@ -23,16 +80,48 @@ function RequestTable() {
         <div className="-mt-2 md:flex md:items-center md:justify-between">
           {/* ... Search and filter buttons ... */}
           <div class="inline-flex overflow-hidden bg-white border divide-x rounded-lg mb-2 rtl:flex-row-reverse">
-            <button class="px-5 py-2 text-xs font-medium text-gray-200 transition-colors duration-200 bg-[#8a2623] sm:text-sm">
+            <button
+              className={`px-5 py-2 text-xs font-medium ${
+                activeButton === "viewAll"
+                  ? "text-gray-200 bg-[#8A2623]"
+                  : "text-gray-600"
+              } transition-colors duration-200 sm:text-sm`}
+              onClick={() => filterEventRequestButton("viewAll")}
+            >
               View all
             </button>
 
-            <button class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm">
-              Completed
+            <button
+              className={`px-5 py-2 text-xs font-medium ${
+                activeButton === "inQueue"
+                  ? "text-gray-200 bg-[#8A2623]"
+                  : "text-gray-600"
+              } transition-colors duration-200 sm:text-sm`}
+              onClick={() => filterEventRequestButton("inQueue")}
+            >
+              In Queue
             </button>
 
-            <button class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm ">
-              Not Completed
+            <button
+              className={`px-5 py-2 text-xs font-medium ${
+                activeButton === "underReview"
+                  ? "text-gray-200 bg-[#8A2623]"
+                  : "text-gray-600"
+              } transition-colors duration-200 sm:text-sm`}
+              onClick={() => filterEventRequestButton("underReview")}
+            >
+              Under Review
+            </button>
+
+            <button
+              className={`px-5 py-2 text-xs font-medium ${
+                activeButton === "complete"
+                  ? "text-gray-200 bg-[#8A2623]"
+                  : "text-gray-600"
+              } transition-colors duration-200 sm:text-sm`}
+              onClick={() => filterEventRequestButton("complete")}
+            >
+              Complete
             </button>
           </div>
 
@@ -99,74 +188,23 @@ function RequestTable() {
                       </th>
                     </tr>
                   </thead>
-                  {/* Row 1 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="03-08-2023"
-                      eventVenue="Think Tank 1"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
 
-                  {/* Row 2 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="20-08-2023"
-                      eventVenue="Think Tank 2"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
-
-                  {/* Row 3 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="10-08-2023"
-                      eventVenue="Think Tank 3"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
-
-                  {/* Row 4 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="15-08-2023"
-                      eventVenue="Think Tank 4"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                    {/* Other rows */}
-                  </tbody>
-
-                  {/* Row 5 */}
-                  <tbody className="bg-white divide-y divide-gray-20">
-                    <RequestList
-                      eventId="6783"
-                      organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#F7EEF2"
-                      eventDate="17-08-2023"
-                      eventVenue="Think Tank 5"
-                      progressBarWidth="w-2/3 h-1.5"
-                    />
-                  </tbody>
+                  {/* Adding the custom information */}
+                  {/* Loading the event requests. */}
+                  {events_table.map((event, index) => (
+                    <tbody className="bg-white divide-y divide-gray-20">
+                      <RequestList
+                        eventId={event.event_id_comm}
+                        organiser={event.organizer_name}
+                        eventStatus={event.status_label}
+                        statusColor={event.eventtrack_color}
+                        eventDate={event.date}
+                        eventVenue={event.venue}
+                        progressBarWidth={event.approval_progress}
+                        keyid={event.event_id}
+                      />
+                    </tbody>
+                  ))}
                 </table>
               </div>
             </div>
@@ -185,8 +223,7 @@ function RequestTable() {
               href="#"
               class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-[#8A2623] border rounded-md sm:w-auto gap-x-2 hover:bg-[#01663E]"
             >
-              <MoveLeft size={18}/>
-
+              <MoveLeft size={18} />
 
               <span>previous</span>
             </a>
@@ -197,7 +234,7 @@ function RequestTable() {
               class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-[#8A2623] border rounded-md sm:w-auto gap-x-2 hover:bg-[#01663E]"
             >
               <span>Next</span>
-              <MoveRight size={18}/>
+              <MoveRight size={18} />
             </a>
           </div>
         </div>

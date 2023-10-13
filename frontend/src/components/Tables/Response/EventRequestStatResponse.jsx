@@ -1,7 +1,7 @@
 // Getting the basic stat of the event requests. 
 async function requestStatResponse() { 
     
-    const url = 'http://127.0.0.1:8000/requests/api/send-event-requests-stat/'; // Url to request the event requests. 
+    const url = 'http://127.0.0.1:8000/requests/api/event-requests-stat/'; // Url to request the event requests. 
 
     const requestData = {
         key1: "Testing"

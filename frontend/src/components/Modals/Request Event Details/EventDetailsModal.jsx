@@ -7,6 +7,8 @@ import { Binary } from "lucide-react";
 import { UserSquare } from "lucide-react";
 import { X } from "lucide-react";
 import { Upload } from 'lucide-react';
+import requestEventDetailResponseReply from "../Response/EventDetailsReply";
+
 
 const EventDetailsModal = ({
   onClose,
@@ -16,7 +18,14 @@ const EventDetailsModal = ({
   venue,
   capacity,
   code,
-}) => {
+  keyid 
+}) => {  
+
+  // Click event for replying to the requested event. 
+  async function eventRequestDetailsReply(id, value) {
+    await requestEventDetailResponseReply(id, value);  // Replying to the requested event, either approved, declined or under review. 
+  }
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="fixed inset-0 bg-black opacity-40"></div>
@@ -141,15 +150,23 @@ const EventDetailsModal = ({
         </p>
 
         {/* Option Buttons */}
-        <div className="flex flex-col justify-center space-y-4">
-          <button className="px-6 py-2 text-[#03663F] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#03663F] hover:text-white">
-            Approve Event
+        <div className="flex flex-col justify-center space-y-4"> 
+        
+          <button className="px-6 py-2 text-[#03663F] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#03663F] hover:text-white"
+            onClick={() => eventRequestDetailsReply(keyid, "approved")}>
+            Approve Event 
+
           </button>
-          <button className="px-6 py-2 text-[#8A2623] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#8A2623] hover:text-white">
-            Decline Event
+          <button className="px-6 py-2 text-[#8A2623] font-bold bg-white border-[#DADADA] border-2 rounded-full hover:bg-[#8A2623] hover:text-white"
+           onClick={() => eventRequestDetailsReply(keyid, "declined")}>
+            Decline Event 
+
           </button>
-          <button className="px-6 py-2 text-white font-bold bg-black rounded-full hover:bg-green-800">
-            Place on Review
+          <button className="px-6 py-2 text-white font-bold bg-black rounded-full hover:bg-green-800"
+           onClick={() => eventRequestDetailsReply(keyid, "underReview")}> 
+
+            Place on Review  
+
           </button>
         </div>
         {/* //---- endof ----// */}
