@@ -182,6 +182,28 @@ class MyInbox extends Component {
                   {notification.name} - {notification.title}
                 </div>
               ))}
+              <div
+                className="mt-8"
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <hr
+                  style={{
+                    flex: 1,
+                    borderTop: "1px solid #e5e7eb",
+                    margin: "0 10px",
+                  }}
+                />
+                <p className="font-medium text-center text-gray-500">
+                  You're all caught up.
+                </p>
+                <hr
+                  style={{
+                    flex: 1,
+                    borderTop: "1px solid #e5e7eb",
+                    margin: "0 10px",
+                  }}
+                />
+              </div>
             </div>
           </div>
           {/* Vertical Divider */}
@@ -229,7 +251,7 @@ class MyInbox extends Component {
                         borderRadius: "15%",
                         cursor: "pointer",
                       }}
-                      className="bg-[#01663E] hover:bg-[#8A2623]"
+                      className="bg-[#8A2623] hover:bg-[#01663E]"
                     >
                       <Trash2 color="white" />
                     </button>

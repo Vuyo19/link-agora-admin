@@ -11,9 +11,10 @@ import SettingsPage from "./pages/SettingsPage";
 import Profile from "./pages/Profile/Profile";
 import NeedHelp from "./pages/NeedHelp/NeedHelp";
 import PersonalInbox from "./pages/Dashboard/Dashboard Sub-Pages/PersonalInbox";
-import Noti from "./pages/Noti";
 import Login from "./pages/Login/Login";
 import EventDetails from "./components/Modals/Request Event Details/EventDetailsModal";
+import ActivityLog from "./pages/Dashboard/Dashboard Sub-Pages/ActivityLog";
+import FlaggedEvents from "./pages/Dashboard/Dashboard Sub-Pages/FlaggedEvents";
 
 // Importing component
 import NavSideBar from "./components/Exterior/Sidebar/NavSidebar";
@@ -22,6 +23,7 @@ import NavBar from "./components/Exterior/Navbar/NavBar";
 // Importing CSS Style
 import "./App";
 import LoginLayout from "./pages/LoginLayout";
+
 
 const App = () => {
   const location = useLocation();
@@ -35,8 +37,9 @@ const App = () => {
     "/profile",
     "/needhelp",
     "/upcomingevents",
-    "/PersonalInbox",
-    "/noti",
+    "/personalInbox",
+    "/activitylog",
+    "/flaggedevents",
   ];
 
   // Check if the current route should show the navbar and sidebar
@@ -55,8 +58,14 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/needhelp" element={<NeedHelp />} />
             <Route path="/eventDetails" element={<EventDetails />} />
-            <Route path="/PersonalInbox" element={<PersonalInbox />} />
-            <Route path="/noti" element={<Noti />} />
+
+            {/* Sub-Pages */}
+            <Route path="/personalInbox" element={<PersonalInbox />} />
+            <Route path="/flaggedevents" element={<FlaggedEvents />} />
+            <Route path="/activitylog" element={<ActivityLog />} />
+
+
+
             {/* Use the layout for the login page */}
             <Route
               path="/login"

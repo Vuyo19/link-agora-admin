@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation
 import useWindowSize from "../../useWindowSize";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { LayoutDashboard, CalendarClock, ListTodo, CalendarDays, Settings, Menu } from "lucide-react";
+import { LayoutDashboard, CalendarClock, Settings, Menu, ListTodo } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/link-agora-logo.png";
 import "./NavSidebar.css"; // Import your CSS file
@@ -27,6 +27,7 @@ const NavSidebar = () => {
       setOpen(false);
     }
   }, [windowSize.width]);
+
 
   return (
     <div
@@ -76,7 +77,16 @@ const NavSidebar = () => {
             key={i}
             onClick={() => setOpen(false)} // Close the sidebar on menu item click
             className={`group flex items-center text-sm -mr-[0.25rem] gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md ${
-              location.pathname === menu.link ? "bg-[#01663E]" : ""
+              (location.pathname === '/' ||
+              location.pathname === '/upcomingevents' ||
+              location.pathname === '/activitylog' ||
+               location.pathname === '/personalInbox' ||
+               location.pathname === '/flaggedevents') &&
+              menu.link === '/'
+                ? "bg-[#01663E]"
+                : location.pathname === menu.link
+                ? "bg-[#01663E]"
+                : ""
             } ${menu?.margin && i !== 0 ? "mt-0" : ""}`}
           >
             <div>{React.createElement(menu?.icon, { size: "20" })}</div>

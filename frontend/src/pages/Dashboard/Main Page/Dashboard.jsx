@@ -12,6 +12,8 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { BiError } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { FiActivity } from "react-icons/fi";
+
 
 
 // Importing CSS Style
@@ -31,7 +33,7 @@ const Dashboard = () => {
         {/* First Row of buttons */}
         <div className="button-group">
           {/* Dashboard Button 1 - Upcoming Events */}
-          <Link to="/PersonalInbox">
+          <Link to="/personalInbox">
             <DashboardButton
               title="Personal Inbox"
               icon={<HiOutlineMail color="#016138" />}
@@ -43,12 +45,12 @@ const Dashboard = () => {
           {/* #endregion */}
 
           {/* Dashboard Button 2 - Completed Events */}
-          <Link to="/upcomingevents">
+          <Link to="/activitylog">
             <DashboardButton
-              title="Completed Events"
-              icon={<LuCalendarCheck2 color="#016138" />}
+              title="Activity Log"
+              icon={<FiActivity color="#016138" />}
               iconBackgroundColor="#edf6ff"
-              subtitle="8 completed events"
+              subtitle="8 new updates"
               info="Click to view all your completed events"
               className="w-80"
             />
@@ -59,7 +61,7 @@ const Dashboard = () => {
         {/* Second Row of buttons */}
         <div className="button-group-2">
           {/* Dashboard Button 3 - Event Invitations */}
-          <Link to="/viewmyinvitations">
+          <Link to="/flaggedevents">
             <DashboardButton
               title="Flagged Events"
               icon={<BiError color="#016138" />}
@@ -71,7 +73,7 @@ const Dashboard = () => {
           {/* #endregion */}
 
           {/* Dashboard Button 4 - My Event */}
-          <Link to="/viewmyevents">
+          <Link to="/declined-events">
             <DashboardButton
               title="Declined Events"
               icon={<RiDeleteBin5Line color="#016138" />}
