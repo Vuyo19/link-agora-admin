@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 
 import BarLoader from "react-spinners/BarLoader";
 import TitleContainer from "../../../components/Decoration/TitleContainer";
-import backgroundImage from "./../../../assets/titleBoxBackgroundRed.png";
-import { AiFillFlag } from "react-icons/ai";
-import FlaggedTable from "../../../components/Tables/Events Flagged/FlaggedTable";
+import backgroundImage from "./../../../assets/titleBoxBackgroundGreen.png";
+import { BiSolidMessageAltError } from "react-icons/bi";
+import DeclinedTable from "../../../components/Tables/Events Declined/DeclinedTable";
 
-const FlaggedEvents = () => {
+const DeclinedEvents = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -27,16 +27,16 @@ const FlaggedEvents = () => {
               {" "}
               {/* Adjust margin-top here */}
               <TitleContainer
-                title="Flagged events"
+                title="Declined events"
                 subtitle="Your one-stop destination to viewing all flagged events"
-                icon={<AiFillFlag size={32} color="black" />}
+                icon={<BiSolidMessageAltError size={32} color="black" />}
                 backgroundImage={backgroundImage}
               />
             </div>
           </div>
           <div className="w-full h-[300px] px-20 mx-auto lg:container mt-10">
             {" "}
-            <FlaggedTable />
+            <DeclinedTable />
           </div>
         </div>
       )}
@@ -44,13 +44,4 @@ const FlaggedEvents = () => {
   );
 };
 
-export default FlaggedEvents;
-
-// Your one-stop destination to viewing all flagged events
-{
-  /* <TitleDecoration
-          title="Flagged"
-          subtitle="Take control of your events! Manage them right here"
-          overlayImage={overlayImage1}
-          backgroundImages={[backgroundImages1, backgroundImages2, backgroundImages3]}/> */
-}
+export default DeclinedEvents;

@@ -10,7 +10,6 @@ import BarLoader from "react-spinners/BarLoader";
 import requestStatResponse from "../components/Tables/Response/EventRequestStatResponse";
 
 // Importing React-Icons
-import { BsCalendar2Event } from "react-icons/bs";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { MdPendingActions } from "react-icons/md";
 import { LiaBalanceScaleSolid } from "react-icons/lia";

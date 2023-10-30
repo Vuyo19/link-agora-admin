@@ -61,7 +61,7 @@ const Dashboard = () => {
         {/* Second Row of buttons */}
         <div className="button-group-2">
           {/* Dashboard Button 3 - Event Invitations */}
-          <Link to="/flaggedevents">
+          <Link to="/flagged-events">
             <DashboardButton
               title="Flagged Events"
               icon={<BiError color="#016138" />}
