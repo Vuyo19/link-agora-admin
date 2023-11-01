@@ -1,28 +1,37 @@
-// Filtering the event request based on the event track. 
-async function filterRequestResponse(value) {
+// API For logging the user in. 
 
-    const url = 'http://127.0.0.1:8000/requests/api/event-request-filter/'; // Url to request the event requests. 
+async function loginRequestResponse(email, password) { 
+
+    const url = 'http://127.0.0.1:8000/users/api/login/'; // Url to request the event requests.  
+    
     const requestData = {
       // Your data to be sent in the request body
       // Sending the specific event id to the server to get the specific event.  
       // Sending the value of the filter request.
-      event_response_filter: value 
+      admin_response_email: email, 
+      admin_response_password: password 
       
-    };
+    };   
 
+    // Making the request to log the user in and return the token to allow the user to log in. 
     try { 
-      
+
         const response = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(requestData),
-        });  
+        }); 
 
-        if (response.ok) {
+        if (response.ok) { 
+
             const responseData = await response.json();  
-            return responseData.events; // Update events_table state 
+
+            // The user can now log in. 
+            responseData.authenticated = true; 
+
+            return responseData; // Update events_table state 
   
           } else {
             alert('Request failed');
@@ -30,12 +39,12 @@ async function filterRequestResponse(value) {
             return null; // Return null or an appropriate value in case of an error
 
           }
-        
-      } catch(error) {
+
+    } catch(error) {
         console.error('Request error:', error); 
         return null; // Return null or an appropriate value in case of an error
+    }
 
-      }
-}
+} 
 
-export default filterRequestResponse; 
+export default loginRequestResponse;

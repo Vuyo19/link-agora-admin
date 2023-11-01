@@ -4,83 +4,47 @@ import { PenLine } from "lucide-react";
 import { CalendarCheck } from "lucide-react";
 import TimelineItem from "../../../components/Activity/TimelineItem";
 import { ChevronLeft } from "lucide-react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react"; 
+import activitylogRequestResponse from "../Response/activityLogResponse";
 
 const ActivityLog = () => {
   const [loading, setLoading] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
-
+  const [activityLog, setActivityLog] = useState([]); // Storing the activity log. 
+   
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 1000);
+    
+    // Fetching the activity log data. 
+    const fetchData = async () => { 
+      try {
+        const responseData = await activitylogRequestResponse();
+        setActivityLog(responseData); // setting the activity log. 
+      } catch (error) {
+        console.error('Error fetching history stats:', error);
+      } finally {
+        setLoading(false);
+      }      
+    }   
+
+    fetchData();  
+
   }, []);
 
-  // Sample data for TimelineItems
-  const timelineData = [
-    {
-      date: "2023-10-08",
-      time: "10:20 pm",
-      icon: <PenLine size={16} className="text-white" />,
-      user: "Jasmine Ming • Admin",
-      message:
-        "Approved an event request by Ethan Kior scheduled for the 2023-03-22",
-    },
-    {
-      date: "2023-10-08",
-      time: "12:35 pm",
-      icon: <PenLine size={16} className="text-white" />,
-      user: "Joachim Anderson • Admin",
-      message:
-        "Approved an event request by Ethan Kior scheduled for the 2023-03-22",
-    },
-    {
-      date: "2023-10-10",
-      time: "3:15 pm",
-      icon: <CalendarCheck size={16} className="text-white" />,
-      user: "John Doe • User",
-      message: "Completed a task on 2023-02-10",
-    },
-    {
-      date: "2023-10-17",
-      time: "2:15 pm",
-      icon: <CalendarCheck size={16} className="text-white" />,
-      user: "Jane Doe • User",
-      message: "Completed a task on 2023-02-10",
-    },
-    // Add more objects with unique data for additional TimelineItems
-    {
-      date: "2023-11-08",
-      time: "10:20 pm",
-      icon: <PenLine size={16} className="text-white" />,
-      user: "Rashad McCants • Admin",
-      message:
-        "Declined an event request by Ethan Kior scheduled for the 2023-03-22",
-    },
-    {
-      date: "2023-11-08",
-      time: "12:35 pm",
-      icon: <PenLine size={16} className="text-white" />,
-      user: "Johsiah Johnson • Admin",
-      message:
-        "Flagged an event request by Ethan Kior scheduled for the 2023-03-22",
-    },
-    {
-      date: "2023-11-10",
-      time: "3:15 pm",
-      icon: <CalendarCheck size={16} className="text-white" />,
-      user: "Brandon Jennings • User",
-      message: "Completed a task on 2023-02-10",
-    },
-    {
-      date: "2023-11-17",
-      time: "2:15 pm",
-      icon: <CalendarCheck size={16} className="text-white" />,
-      user: "Gilbert Areans • User",
-      message: "Completed a task on 2023-02-10",
-    },
-  ];
+  // Sample data for TimelineItems 
+
+  const timelineData = activityLog.map((log, index) => {  
+      return {
+        date: log.date, 
+        time: log.time, 
+        icon: <PenLine size={16} className="text-white" />,
+        user: `${log.admin_first_name} ${log.admin_surname} • Admin`,
+        message: `${log.message}`
+      }
+  });
 
   // Group timeline data by month and year
   const groupedTimelineData = timelineData.reduce((groups, item) => {

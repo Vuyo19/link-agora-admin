@@ -1,11 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState }from "react";
 import LoginLayout from "../LoginLayout";
+import loginRequestResponse from "./Response/LoginResponse";
+
 
 // Import Web logo image
 import logo from "../../assets/link-agora-logo-variation-4.png";
 
-const Login = () => {
+const Login = () => {  
+  
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  }); 
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+
+  // Button to sign the user in. 
+  const handleSignInClick = async () => {  
+
+    const { email, password } = formData; 
+
+    const admin_login = await loginRequestResponse(email, password)  
+    
+    if(admin_login.authenticated) {  
+      
+      window.location.href = "/"; // Replace with your desired path
+      alert("Admin can now log in.") 
+    } else {
+        alert("Email or password is not correct") 
+
+    }
+
+  }
+
   return (
     <LoginLayout>
       <div>
@@ -24,7 +58,6 @@ const Login = () => {
                 <h1 className="flex items-center justify-center text-md font-bold leading-tight tracking-tight text-white md:text-lg">
                   Sign in to your account
                 </h1>
-                <form className="space-y-4 md:space-y-6" action="#">
                   {/* Email Email-field */}
                   <div className="mt-8">
                     <label
@@ -38,8 +71,10 @@ const Login = () => {
                       name="email"
                       id="email"
                       className="bg-black border-2 border-[#2A805D] text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                      placeholder="name@bmf.com"
+                      placeholder="name@bmf.com" 
                       required
+                      value={formData.email}
+                      onChange={handleInputChange}
                     />
                   </div>
                   {/* //---- endof Text-field ----// */}
@@ -59,48 +94,31 @@ const Login = () => {
                       placeholder="••••••••"
                       className="bg-black border-2 border-[#2A805D] text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                       required
+                      value={formData.password}
+                      onChange={handleInputChange}
                     />
                   </div>
                   {/* //---- endof Text-field ----// */}
 
                   <div className="flex items-center justify-between">
-                    {/* Remember Me Checkbox */}
-                    <div className="flex items-start">
-                      <div className="flex items-center h-5">
-                        <input
-                          id="remember"
-                          aria-describedby="remember"
-                          type="checkbox"
-                          className="w-4 h-4 border border-[#2A805D] rounded bg-black focus:ring-3 focus:ring-primary-300 "
-                        />
-                      </div>
-
-                      <div className="ml-3 text-sm">
-                        <label
-                          htmlFor="remember"
-                          className="text-gray-500 dark:text-gray-300"
-                        >
-                          Remember me
-                        </label>
-                      </div>
-                    </div>
-                    {/* //---- endof Checkbox ----// */}
 
                     {/* Forgot Password Link-Action */}
                     <a
                       href="#"
                       className="text-sm font-medium text-white hover:underline"
                     >
-                      Forgot password?
+                      Forgot password? Please contact IT support.
                     </a>
                     {/* //---- endof Link-Action ----// */}
                   </div>
                   {/* Sign-In Button */}
                   <button
-                    type="submit"
+                    type="button"
                     className="w-full text-white bg-[#8A2623] hover:bg-[#01663E]  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    onClick={handleSignInClick}
                   >
-                    <Link to="/schedule">Sign in</Link>
+                    Sign in 
+
                   </button>
                   {/* //---- endof Button ----// */}
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
@@ -112,7 +130,6 @@ const Login = () => {
                       Sign up
                     </a>
                   </p>
-                </form>
               </div>
             </div>
             {/* ///---- end of ----/// */}

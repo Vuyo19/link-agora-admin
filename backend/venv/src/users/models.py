@@ -62,7 +62,7 @@ class CustomUser(AbstractUser):
 
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50, null=True)
-    last_name = models.CharField(max_length=50, null=True)
+    surname = models.CharField(max_length=50, null=True)
     title = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     date_of_birth = models.DateField()
@@ -82,6 +82,7 @@ class CustomUser(AbstractUser):
     
     objects = UserManager()
     
+    EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'surname', 'title', 'gender', 'date_of_birth', 'age', 'race', 'mobile', 'branch_province', 'branch_region', 'job_title']
 

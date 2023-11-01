@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .models import Event, EventTrack, Status
+from .models import Event, EventTrack, Status, EventLog
 from django.db.models import Count
 from users.models import CustomUser
 from datetime import datetime
@@ -132,8 +132,18 @@ def event_request_reply(request):
         event_id = data.get('event_id') # Getting the id of the event
         event_reply = data.get('event_reply') # Getting the response of the event.    
 
+        event_log = EventLog() # Creating an event log object. 
         event_instance = Event.objects.get(id=event_id) 
-        response = ""
+
+        # Get the current date
+        current_date = datetime.now()
+
+        # Format the date as "YYYY-MM-DD"  
+        date_stamp = current_date.strftime("%Y-%m-%d")  # Storing the date posted
+        time_stamp = current_date.strftime("%H:%M") # Storing the time posted 
+
+        response = "" 
+
 
         # Inspecting the type of response. 
 
@@ -147,7 +157,15 @@ def event_request_reply(request):
             event_instance.eventtrack_id = mod_eventtrack
             event_instance.status_id = mod_status 
             event_instance.save()  
-            response = "Requested event has been placed under review!"
+            response = "Requested event has been placed under review!" 
+
+            # Logging the event that has been placed under review. 
+            event_log.date = date_stamp
+            event_log.time = time_stamp 
+            event_log.status = "is reviewing" 
+            event_log.event = Event.objects.get(id=event_id)  
+            event_log.admin = CustomUser.objects.get(id=12) # Capturing the admin that took action 
+            event_log.save() # Saving the event log. 
 
         # If the event was approved
         elif event_reply == "approved":  
@@ -159,7 +177,16 @@ def event_request_reply(request):
             event_instance.eventtrack_id = mod_eventtrack
             event_instance.status_id = mod_status 
             event_instance.save()  
-            response = "Requested event has been approved!"
+            response = "Requested event has been approved!" 
+
+            # Logging the event that has been approved  
+            event_log.date = date_stamp
+            event_log.time = time_stamp 
+            event_log.status = "has approved" 
+            event_log.event = Event.objects.get(id=event_id)  
+            event_log.admin = CustomUser.objects.get(id=12) # Capturing the admin that took action 
+            event_log.save() # Saving the event log. 
+
 
         # If the event was declined. 
         elif event_reply == "declined":  
@@ -171,7 +198,15 @@ def event_request_reply(request):
             event_instance.eventtrack_id = mod_eventtrack
             event_instance.status_id = mod_status 
             event_instance.save()  
-            response = "Requested event has been declined!"
+            response = "Requested event has been declined!" 
+
+            # Logging the event that has been declined. 
+            event_log.date = date_stamp
+            event_log.time = time_stamp 
+            event_log.status = "has declined" 
+            event_log.event = Event.objects.get(id=event_id)  
+            event_log.admin = CustomUser.objects.get(id=12) # Capturing the admin that took action 
+            event_log.save() # Saving the event log. 
 
 
         return JsonResponse({'message': response}) # Sending the response. 

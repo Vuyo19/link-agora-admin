@@ -42,7 +42,8 @@ CSRF_COOKIE_SAMESITE = 'Lax'  # Adjust as needed
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ 
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +58,8 @@ INSTALLED_APPS = [
     'event_request', 
     'overview', 
     'foundation',
-    'users' 
+    'users',
+    'activity_log'
 
 ]
 
@@ -134,6 +136,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'users.backends.EmailBackend',  # Replace with the path to your custom backend
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

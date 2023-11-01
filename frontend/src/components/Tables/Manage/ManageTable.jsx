@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EventList from "./ManageTableItem";
 import filterHistoryResponse from "./Response/EventHistoryFilterResponse";
 import historyStatResponse from "./Response/EventHistoryStatResponse";
+import { MoveLeft, MoveRight } from "lucide-react";
 
 // Importing React-Icons
 import { FiSearch } from "react-icons/fi";

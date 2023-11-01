@@ -20,5 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls), 
     path('requests/', include('event_request.urls')), # going to the users urls.  
-    path('history/', include('event_manage.urls'))  # api for managing the requests. 
-]
+    path('history/', include('event_manage.urls')),  # api for managing the requests.  
+    path('users/', include('users.urls')), # API for managing the user logout. 
+    path('activity/', include('activity_log.urls')) # API for managing the activity log.
+]  

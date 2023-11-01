@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
-CustomUser = get_user_model()
+from users.models import CustomUser 
 
 # Create your models here. 
 
@@ -25,7 +24,7 @@ class Status(models.Model):
 #25% ("In Progress"): #2196F3 (Blue)
 # 50% ("Halfway"): #4CAF50 (Green)
 # 75% ("Almost Complete"): #9C27B0 (Orange)
-# 100% ("Completed"): #8BC34A (Lime Green
+# 100% ("Completed"): #8BC34A (Lime Green)
 
 class EventTrack(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -73,7 +72,29 @@ class Event(models.Model):
     status_id = models.ForeignKey(Status, on_delete=models.CASCADE) 
 
     def __str__(self):
-        return self.title 
+        return self.title  
+    
+class EventLog(models.Model):  
+    
+    date = models.DateField()
+    time = models.TimeField() 
+
+    STATUS_CHOICES = (
+        ('has approved', 'Has Approved'),
+        ('has declined', 'Has Declined'),
+        ('is reviewing', 'Is Reviewing')
+    )  
+
+    # Add a foreign key relationship to the Event model
+    event = models.ForeignKey(Event, on_delete=models.CASCADE) 
+
+    admin = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='has declined')
+    
+    def __str__(self):
+        return f"{self.admin.first_name} {self.admin.last_name} {self.status} {self.event.title}"
+
 
 # creating the class for linking the speakers and the actual event. 
 class EventSpeaker(models.Model): 

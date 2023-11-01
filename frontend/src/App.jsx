@@ -65,7 +65,6 @@ const App = () => {
             <Route path="/activitylog" element={<ActivityLog />} />
 
 
-
             {/* Use the layout for the login page */}
             <Route
               path="/login"
