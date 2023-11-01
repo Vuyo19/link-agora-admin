@@ -23,6 +23,7 @@ import NavBar from "./components/Exterior/Navbar/NavBar";
 // Importing CSS Style
 import "./App";
 import LoginLayout from "./pages/LoginLayout";
+import DeclinedEvents from "./pages/Dashboard/Dashboard Sub-Pages/DeclinedEvents";
 
 
 const App = () => {
@@ -39,7 +40,8 @@ const App = () => {
     "/upcomingevents",
     "/personalInbox",
     "/activitylog",
-    "/flaggedevents",
+    "/flagged-events",
+    "/declined-events",
   ];
 
   // Check if the current route should show the navbar and sidebar
@@ -61,7 +63,8 @@ const App = () => {
 
             {/* Sub-Pages */}
             <Route path="/personalInbox" element={<PersonalInbox />} />
-            <Route path="/flaggedevents" element={<FlaggedEvents />} />
+            <Route path="/flagged-events" element={<FlaggedEvents />} />
+            <Route path="/declined-events" element={<DeclinedEvents />} />
             <Route path="/activitylog" element={<ActivityLog />} />
 
 

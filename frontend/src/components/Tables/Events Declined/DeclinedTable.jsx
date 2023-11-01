@@ -6,9 +6,9 @@ import { FiSearch } from "react-icons/fi";
 // Importing Lucide-Icons
 import { MoveRight } from 'lucide-react';
 import { MoveLeft } from 'lucide-react';
-import FlaggedItem from "./FlaggedItem";
+import DeclinedItem from "./DeclinedItem";
 
-function FlaggedTable() {
+function DeclinedTable() {
   return (
     <>
       <section className="container px-4 mx-auto">
@@ -16,14 +16,14 @@ function FlaggedTable() {
           {/* Heading */}
 
           <div className="flex items-center gap-x-3 -mt-8 mb-6">
-            <h1 className="text-3xl font-medium text-black">Events</h1>
+            <h1 className="text-3xl font-medium text-black">Declined Events</h1>
           </div>
         </div>
 
         <div className="-mt-2 md:flex md:items-center md:justify-between">
           {/* ... Search and filter buttons ... */}
           <div class="inline-flex overflow-hidden bg-white border divide-x rounded-lg mb-2 rtl:flex-row-reverse">
-            <button class="px-5 py-2 text-xs font-medium text-gray-200 transition-colors duration-200 bg-[#8A2623] sm:text-sm">
+            <button class="px-5 py-2 text-xs font-medium text-gray-200 transition-colors duration-200 bg-[#01663E] sm:text-sm">
               View all
             </button>
 
@@ -54,7 +54,7 @@ function FlaggedTable() {
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden border border-gray-400 md:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-[#8A2623]">
+                  <thead className="bg-[#01663E]">
                     {/* Table header */}
                     <tr>
                       <th
@@ -71,21 +71,21 @@ function FlaggedTable() {
                         scope="col"
                         class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-white"
                       >
-                        Status
+                        Event Code
                       </th>
 
                       <th
                         scope="col"
                         class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white"
                       >
-                        Date
+                        Date Declined
                       </th>
 
                       <th
                         scope="col"
                         class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white"
                       >
-                        Venue
+                        Deleting in
                       </th>
 
                       <th scope="col" class="relative py-3.5 px-4">
@@ -95,42 +95,36 @@ function FlaggedTable() {
                   </thead>
                   {/* Row 1 */}
                   <tbody className="bg-white divide-y divide-gray-20">
-                    <FlaggedItem
+                    <DeclinedItem
                       eventId="6783"
                       organiser="Jasmine Ming"
-                      eventStatus="Confirmed"
-                      statusColor="#C2F6CA"
+                      eventCode="2788"
                       eventDate="03-08-2023"
-                      eventVenue="Think Tank 1"
-                      textColor="#22c55e"
+                      eventVenue="28 days"
                     />
                     {/* Other rows */}
                   </tbody>
 
                   {/* Row 2 */}
                   <tbody className="bg-white divide-y divide-gray-20">
-                    <FlaggedItem
+                    <DeclinedItem
                       eventId="6783"
                       organiser="Jasmine Ming"
-                      eventStatus="Pending"
-                      statusColor="#FFEAC2"
+                      eventCode="3457"
                       eventDate="03-08-2023"
-                      eventVenue="Think Tank 1"
-                      textColor="#EAB308"
+                      eventVenue="15 days"
                     />
                     {/* Other rows */}
                   </tbody>
 
                   {/* Row 3 */}
                   <tbody className="bg-white divide-y divide-gray-20">
-                    <FlaggedItem
+                    <DeclinedItem
                       eventId="6783"
                       organiser="Jasmine Ming"
-                      eventStatus="Declined"
-                      statusColor="#F7EEF2"
+                      eventCode="4789"
                       eventDate="03-08-2023"
-                      eventVenue="Think Tank 1"
-                      textColor="#EF4444"
+                      eventVenue="7 days"
                     />
                     {/* Other rows */}
                   </tbody>
@@ -175,7 +169,7 @@ function FlaggedTable() {
             {/* Previous Button */}
             <a
               href="#"
-              class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-[#8A2623] border rounded-md sm:w-auto gap-x-2 hover:bg-[#01663E]"
+              class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-[#01663E] border rounded-md sm:w-auto gap-x-2 hover:bg-[#8A2623]"
             >
               <MoveLeft size={18}/>
 
@@ -186,7 +180,7 @@ function FlaggedTable() {
             {/* Next Button */}
             <a
               href="#"
-              class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-[#8A2623] border rounded-md sm:w-auto gap-x-2 hover:bg-[#01663E]"
+              class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-white capitalize transition-colors duration-200 bg-[#01663E] border rounded-md sm:w-auto gap-x-2 hover:bg-[#8A2623]"
             >
               <span>Next</span>
               <MoveRight size={18}/>
@@ -198,4 +192,4 @@ function FlaggedTable() {
   );
 }
 
-export default FlaggedTable;
+export default DeclinedTable;

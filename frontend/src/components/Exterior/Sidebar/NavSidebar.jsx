@@ -81,7 +81,8 @@ const NavSidebar = () => {
               location.pathname === '/upcomingevents' ||
               location.pathname === '/activitylog' ||
                location.pathname === '/personalInbox' ||
-               location.pathname === '/flaggedevents') &&
+               location.pathname === '/declined-events' ||
+               location.pathname === '/flagged-events') &&
               menu.link === '/'
                 ? "bg-[#01663E]"
                 : location.pathname === menu.link
