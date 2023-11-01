@@ -93,7 +93,7 @@ class EventLog(models.Model):
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='has declined')
     
     def __str__(self):
-        return f"{self.admin.first_name} {self.admin.last_name} {self.status} {self.event.title}"
+        return f"{self.admin.first_name} {self.admin.surname} {self.status} {self.event.title}"
 
 
 # creating the class for linking the speakers and the actual event. 
